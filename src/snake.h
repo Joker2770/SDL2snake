@@ -29,8 +29,33 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include<iostream>
-using namespace std;
+#ifndef __SNAKE_H__
+#define __SNAKE_H__
+
+#ifdef _WIN32
+//Windows
+extern "C"
+{
+#include "SDL.h"
+};
+#else
+//Linux
+//Linux C++
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+	
+#include<SDL2/SDL.h>
+
+//Linux C++
+#ifdef __cplusplus
+};
+#endif
+#endif
+
+#include <stdio.h>
+#include "config.h"
 
 typedef struct snake_node
 {
@@ -42,19 +67,22 @@ typedef struct snake_node
 class Snake
 {
 	public:
-		snake();
-		~snake();
+		Snake();
+		~Snake();
 
 	public:
 		void initSelf();
 		void move();
 		void eatfood();
-		void drawSelf();
+		SDL_Rect drawSelf();
 		void growSelf();
 		bool isEatSelf();
 		bool isAlive();
 
 	private:
 		SnakeList m_snake;
+		int m_iLength;
 
 };
+
+#endif

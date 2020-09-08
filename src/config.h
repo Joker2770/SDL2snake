@@ -1,8 +1,8 @@
 /*************************************************************************
-    > File Name: controller.h
+    > File Name: config.h
     > Author: Jintao Yang
     > Mail: 18608842770@163.com 
-    > Created Time: Tue Sep  8 13:39:10 2020
+    > Created Time: Tue Sep  8 16:02:36 2020
  ************************************************************************/
 
 /*
@@ -29,22 +29,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef __CONTROLLER_H__
-#define __CONTROLLER_H__
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
 
 #include<iostream>
 using namespace std;
 
-class Controller
-{
-	public:
-		Controller();
-		~Controller();
-
-	public:
-		void changeDirection(int iDirection);
-		void exitGame();
-};
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
 
 #endif
-

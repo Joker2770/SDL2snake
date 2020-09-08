@@ -52,9 +52,8 @@ extern "C"
 #endif
 
 #include <stdio.h>
-
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+#include "config.h"
+#include "snake.h"
 
 int main(int argc, char *argv[])
 {

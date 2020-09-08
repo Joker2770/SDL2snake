@@ -29,17 +29,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#ifndef __FOOD_H__
+#define __FOOD_H__
+
 #include<iostream>
 using namespace std;
 
-class food
+class Food
 {
 	public:
-		food();
-		~food();
+		Food();
+		~Food();
 
 	public:
 		void createSelf();
 		void drawSelf();
-		void beEaten();
-}
+		void destroySelf();
+
+	private:
+		
+};
+
+#endif
+
