@@ -1,10 +1,10 @@
 /*************************************************************************
-    > File Name: snake.h
+    > File Name: controller.h
     > Author: Jintao Yang
     > Mail: 18608842770@163.com 
-    > Created Time: Tue Sep  8 09:03:57 2020
+    > Created Time: Tue Sep  8 13:39:10 2020
  ************************************************************************/
- 
+
 /*
 MIT License
 
@@ -32,29 +32,14 @@ SOFTWARE.
 #include<iostream>
 using namespace std;
 
-typedef struct snake_node
-{
-	int x_pos;
-	int y_pos;
-	struct snake_node* next;
-}SnakeNode, *SnakeList;
-
-class Snake
+class Controller
 {
 	public:
-		snake();
-		~snake();
+		Controller();
+		~Controller();
 
 	public:
-		void initSelf();
-		void move();
-		void eatfood();
-		void drawSelf();
-		void growSelf();
-		bool isEatSelf();
-		bool isAlive();
-
-	private:
-		SnakeList m_snake;
-
+		void changeDirection(int iDirection);
+		void exitGame();
 };
+
