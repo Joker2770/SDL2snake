@@ -7,5 +7,6 @@ project(SDL2snake)
 
 find_package(SDL2 REQUIRED)
 
-add_executable(SDL2snake src/rungame.cpp)
-target_link_libraries(SDL2snake ${SDL2_LIBRARIES})
+file(GLOB SDL2snake_SRCS "src/*.cpp" "src/*.h")
+add_executable(${PROJECT_NAME} ${SDL2snake_SRCS})
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
