@@ -67,14 +67,14 @@ typedef struct snake_node
 class Snake
 {
 	public:
-		Snake();
-		~Snake();
+		Snake() : m_iLength(1){}
+		~Snake(){}
 
 	public:
 		void initSelf();
-		void move();
+		void move(int iDirection);
 		void eatfood();
-		SDL_Rect drawSelf();
+		SDL_Rect* drawSelf(SnakeList m_snake);
 		void growSelf();
 		bool isEatSelf();
 		bool isAlive();
@@ -82,6 +82,7 @@ class Snake
 	private:
 		SnakeList m_snake;
 		int m_iLength;
+		int m_iDirection;
 
 };
 
