@@ -33,27 +33,22 @@ SOFTWARE.
 #include<iostream>
 using namespace std;
 
-Food::Food()
-{
-	this->createSelf();
-}
-
-Food::~Food()
-{
-	this->destroySelf();
-}
-
-void Food::createSelf()
-{
-
-}
-
 void Food::destroySelf()
 {
 
 }
 
-void Food::drawSelf()
+SDL_Rect* Food::drawSelf()
 {
+	this->m_x_pos = (rand()%SCREEN_WIDTH)/10*10;
+	this->m_y_pos = (rand()%SCREEN_HEIGHT)/10*10;
 
+	this->m_sRec[0] = {
+		this->m_x_pos,
+		this->m_y_pos,
+		10,
+		10
+	};
+
+	return this->m_sRec;
 }

@@ -72,7 +72,7 @@ class Snake
 
 	public:
 		void initSelf();
-		void move(int iDirection);
+		void moveSelf(int iDirection);
 		void eatfood();
 		SDL_Rect* drawSelf(SnakeList m_snake);
 		void growSelf();
@@ -82,7 +82,7 @@ class Snake
 	private:
 		SnakeList m_snake;
 		int m_iLength;
-		int m_iDirection;
+		int m_iCurDirection;
 
 };
 

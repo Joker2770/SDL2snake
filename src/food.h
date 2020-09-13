@@ -32,22 +32,53 @@ SOFTWARE.
 #ifndef __FOOD_H__
 #define __FOOD_H__
 
+#ifdef _WIN32
+//Windows
+extern "C"
+{
+#include "SDL.h"
+};
+#else
+//Linux
+//Linux C++
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+	
+#include<SDL2/SDL.h>
+
+//Linux C++
+#ifdef __cplusplus
+};
+#endif
+#endif
+
+#include<stdlib.h>
 #include<iostream>
+#include"config.h"
 using namespace std;
 
 class Food
 {
 	public:
-		Food();
-		~Food();
+		Food():m_x_pos(rand()%(SCREEN_WIDTH/10)), m_y_pos(rand()%(SCREEN_HEIGHT/10))
+		{
+				this->m_x_pos;
+				this->m_y_pos;
+		}
+		~Food(){
+			this->destroySelf();
+		}
 
 	public:
-		void createSelf();
-		void drawSelf();
+		SDL_Rect* drawSelf();
 		void destroySelf();
 
-	private:
-		
+	public:
+		int m_x_pos;
+		int m_y_pos;
+		SDL_Rect m_sRec[1] = {};
 };
 
 #endif

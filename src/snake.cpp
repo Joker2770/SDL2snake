@@ -33,12 +33,32 @@ SOFTWARE.
 #include<iostream>
 using namespace std;
 
-Snake::Snake()
+void Snake::eatfood()
 {
 
 }
 
-Snake::~Snake()
+void Snake::growSelf()
 {
 
+}
+
+void Snake::initSelf()
+{
+
+}
+
+bool Snake::isAlive()
+{
+	return false;
+}
+
+void Snake::moveSelf(int iDir)
+{
+
+}
+
+bool Snake::isEatSelf()
+{
+	return false;
 }
