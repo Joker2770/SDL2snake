@@ -62,17 +62,23 @@ using namespace std;
 class Food
 {
 	public:
-		Food();
-		~Food();
+		Food():m_x_pos((rand()%SCREEN_WIDTH)/10*10), m_y_pos((rand()%SCREEN_HEIGHT)/10*10)
+		{
+			this->beEaten = false;
+		}
+		~Food()
+		{
+
+		}
 
 	public:
 		SDL_Rect* drawSelf();
-		void destroySelf();
 
 	public:
 		int m_x_pos;
 		int m_y_pos;
 		SDL_Rect m_sRec[1];
+		bool beEaten;
 };
 
 #endif

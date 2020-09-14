@@ -115,6 +115,7 @@ int main(int argc, char *argv[])
 				
 				//Render red filled quad
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
+				food->beEaten = true;
 				SDL_RenderFillRect(gRenderer, food->drawSelf());
 
 				//Update screen
