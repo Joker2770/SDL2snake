@@ -98,7 +98,8 @@ int main(int argc, char *argv[])
 
 			//While application is running
 			while (!quit)
-			{//Handle events on queue
+			{
+				//Handle events on queue
 				while (SDL_PollEvent(&e) != 0)
 				{
 					//User requests quit

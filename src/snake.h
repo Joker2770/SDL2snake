@@ -55,6 +55,7 @@ extern "C"
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "config.h"
 
 typedef struct snake_node
@@ -69,6 +70,24 @@ class Snake
 	public:
 		Snake() : m_iLength(1)
 		{
+			switch(rand()%4)
+			{
+				case 0:
+					this->m_CurDirection = UP;
+					break;
+				case 1:
+					this->m_CurDirection = DOWN;
+					break;
+				case 2:
+					this->m_CurDirection = LEFT;
+					break;
+				case 3:
+					this->m_CurDirection = RIGHT;
+					break;
+				default:
+					this->m_CurDirection = LEFT;
+					break;
+			}
 		}
 		~Snake()
 		{
@@ -76,7 +95,7 @@ class Snake
 
 	public:
 		void initSelf();
-		void moveSelf(int iDirection);
+		void moveSelf(DRIVER_DIRECTION Direction);
 		void eatfood();
 		SDL_Rect* drawSelf(SnakeList m_snake);
 		void growSelf();
@@ -86,7 +105,7 @@ class Snake
 	private:
 		SnakeList m_snake;
 		int m_iLength;
-		int m_iCurDirection;
+		DRIVER_DIRECTION m_CurDirection;
 
 };
 

@@ -35,6 +35,14 @@ SOFTWARE.
 #include<iostream>
 using namespace std;
 
+typedef enum driver_direction
+{
+	UP = 1,
+	DOWN = -1,
+	LEFT = -2,
+	RIGHT= 2
+}DRIVER_DIRECTION;
+
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 

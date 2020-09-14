@@ -32,6 +32,29 @@ SOFTWARE.
 #ifndef __CONTROLLER_H__
 #define __CONTROLLER_H__
 
+#ifdef _WIN32
+//Windows
+extern "C"
+{
+#include "SDL.h"
+};
+#else
+//Linux
+//Linux C++
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+	
+#include<SDL2/SDL.h>
+
+//Linux C++
+#ifdef __cplusplus
+};
+#endif
+#endif
+
+#include"config.h"
 #include<iostream>
 using namespace std;
 
@@ -42,8 +65,7 @@ class Controller
 		~Controller();
 
 	public:
-		void changeDirection(int iDirection);
-		void exitGame();
+
 };
 
 #endif
