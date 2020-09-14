@@ -62,14 +62,8 @@ using namespace std;
 class Food
 {
 	public:
-		Food():m_x_pos(rand()%(SCREEN_WIDTH/10)), m_y_pos(rand()%(SCREEN_HEIGHT/10))
-		{
-				this->m_x_pos;
-				this->m_y_pos;
-		}
-		~Food(){
-			this->destroySelf();
-		}
+		Food();
+		~Food();
 
 	public:
 		SDL_Rect* drawSelf();
@@ -78,7 +72,7 @@ class Food
 	public:
 		int m_x_pos;
 		int m_y_pos;
-		SDL_Rect m_sRec[1] = {};
+		SDL_Rect m_sRec[1];
 };
 
 #endif

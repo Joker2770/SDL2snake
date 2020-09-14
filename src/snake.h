@@ -67,8 +67,12 @@ typedef struct snake_node
 class Snake
 {
 	public:
-		Snake() : m_iLength(1){}
-		~Snake(){}
+		Snake() : m_iLength(1)
+		{
+		}
+		~Snake()
+		{
+		}
 
 	public:
 		void initSelf();

@@ -62,3 +62,8 @@ bool Snake::isEatSelf()
 {
 	return false;
 }
+
+SDL_Rect* Snake::drawSelf(SnakeList slist)
+{
+	return NULL;
+}

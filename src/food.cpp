@@ -33,9 +33,17 @@ SOFTWARE.
 #include<iostream>
 using namespace std;
 
+Food::Food()
+{
+}
+
+Food::~Food()
+{
+	this->destroySelf();
+}
+
 void Food::destroySelf()
 {
-
 }
 
 SDL_Rect* Food::drawSelf()
