@@ -33,6 +33,7 @@ SOFTWARE.
 //Windows
 extern "C"
 {
+#include <windows.h> //Use Sleep().
 #include "SDL.h"
 };
 #else

@@ -53,7 +53,7 @@ bool Snake::isAlive()
 	return false;
 }
 
-void Snake::moveSelf(int iDir)
+void Snake::moveSelf(DRIVER_DIRECTION iDir)
 {
 
 }
