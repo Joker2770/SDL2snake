@@ -11,3 +11,7 @@ find_package(SDL2 REQUIRED)
 file(GLOB SDL2snake_SRCS "src/*.cpp" "src/*.h")
 add_executable(${PROJECT_NAME} ${SDL2snake_SRCS})
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
+
+if(UNIX)
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+endif()
