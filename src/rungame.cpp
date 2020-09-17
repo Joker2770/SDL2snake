@@ -75,8 +75,9 @@ SDL_Renderer* gRenderer = NULL;
 
 int main(int argc, char *argv[])
 {
-	//Snake snake;
+	Snake *snake = new Snake();
 	Food *food = new Food();
+	SDL_Rect *pSRec = (SDL_Rect *)malloc((SCREEN_WIDTH*SCREEN_HEIGHT / 100) * sizeof(SDL_Rect));
 	
 	if (!init())
 	{
@@ -120,6 +121,19 @@ int main(int argc, char *argv[])
 				food->beEaten = true;
 				SDL_RenderFillRect(gRenderer, food->drawSelf());
 
+				snake->initSelf();
+				memset(pSRec, 0, sizeof(pSRec));
+				pSRec = snake->drawSelf();
+				for (int i = 0; i < snake->m_iLength; i++)
+				{
+					//Render green filled quad
+					SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF);
+					SDL_RenderFillRect(gRenderer, &pSRec[i]); 
+					//Render blue outlined quad
+					SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0xFF, 0xFF);
+					SDL_RenderDrawRect(gRenderer, &pSRec[i]);
+				}
+
 				//Update screen
 				SDL_RenderPresent(gRenderer);
 
@@ -134,13 +148,23 @@ int main(int argc, char *argv[])
 	}
 	closeAll();
 	
-	
 	if (NULL != food)
 	{
 		delete food;
 		food = NULL;
-	}
+	}	
 	
+	if (NULL != snake)
+	{
+		delete snake;
+		snake = NULL;
+	}
+
+	if (NULL != pSRec)
+	{
+		free(pSRec);
+		pSRec = NULL;
+	}
 
 	return 0;
 }

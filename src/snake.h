@@ -68,8 +68,10 @@ typedef struct snake_node
 class Snake
 {
 	public:
-		Snake() : m_iLength(1)
+		Snake() : m_iLength(2)
 		{
+			this->m_snake = (SnakeList)malloc((SCREEN_WIDTH*SCREEN_HEIGHT / 100) * sizeof(SnakeNode));
+
 			switch(rand()%4)
 			{
 				case 0:
@@ -91,21 +93,28 @@ class Snake
 		}
 		~Snake()
 		{
+			if (NULL != this->m_snake)
+			{
+				free(this->m_snake);
+				this->m_snake = NULL;
+			}
 		}
 
 	public:
 		void initSelf();
 		void moveSelf(DRIVER_DIRECTION Direction);
 		void eatfood();
-		SDL_Rect* drawSelf(SnakeList m_snake);
+		SDL_Rect* drawSelf();
 		void growSelf();
 		bool isEatSelf();
 		bool isAlive();
 
-	private:
+	public:
 		SnakeList m_snake;
 		int m_iLength;
 		DRIVER_DIRECTION m_CurDirection;
+
+	private:
 
 };
 
