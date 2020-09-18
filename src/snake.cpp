@@ -38,11 +38,6 @@ void Snake::eatfood()
 
 }
 
-void Snake::growSelf()
-{
-
-}
-
 void Snake::initSelf()
 {
 	this->m_snake->x_pos = SCREEN_WIDTH / 2;
@@ -56,6 +51,12 @@ void Snake::initSelf()
 
 bool Snake::isAlive()
 {
+	if (this->m_snake->x_pos > SCREEN_WIDTH || this->m_snake->x_pos < 0 || this->m_snake->y_pos > SCREEN_HEIGHT || this->m_snake->y_pos < 0)
+		return false;
+
+	if (this->isEatSelf())
+		return false;
+
 	return true;
 }
 
@@ -66,6 +67,13 @@ void Snake::moveSelf(DRIVER_DIRECTION iDir)
 
 bool Snake::isEatSelf()
 {
+	SnakeList pS = this->m_snake->next;
+	while (NULL != pS)
+	{
+		if (pS->x_pos == this->m_snake->x_pos && pS->y_pos == this->m_snake->y_pos)	return true;
+		pS = pS->next;	
+	}
+
 	return false;
 }
 

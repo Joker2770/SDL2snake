@@ -107,7 +107,6 @@ class Snake
 		void moveSelf(DRIVER_DIRECTION Direction);
 		void eatfood();
 		SDL_Rect* drawSelf();
-		void growSelf();
 		bool isEatSelf();
 		bool isAlive();
 
