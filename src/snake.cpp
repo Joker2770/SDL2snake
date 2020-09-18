@@ -47,11 +47,10 @@ void Snake::initSelf()
 {
 	this->m_snake->x_pos = SCREEN_WIDTH / 2;
 	this->m_snake->y_pos = SCREEN_HEIGHT / 2;
-	SnakeNode sNode2;
- 	sNode2.x_pos = this->m_snake->x_pos + 10;
- 	sNode2.y_pos = this->m_snake->y_pos;
- 	sNode2.next = NULL;
-	this->m_snake->next = &sNode2;
+	this->m_snake->next = (SnakeList)malloc(sizeof(SnakeNode));
+	this->m_snake->next->x_pos = this->m_snake->x_pos + 10;
+	this->m_snake->next->y_pos = this->m_snake->y_pos;
+	this->m_snake->next->next = NULL;
 	//this->m_iLength = 2;
 }
 
@@ -73,13 +72,10 @@ bool Snake::isEatSelf()
 SDL_Rect* Snake::drawSelf()
 {
 	SnakeList pSnake = this->m_snake;
-	//At most (SCREEN_WIDTH*SCREEN_HEIGHT / 100) snake nodes;
-	SDL_Rect sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100] = {NULL};
-	int ciLen = this->m_iLength;
-	for (int i = 0; i < ciLen && pSnake != NULL; i++)
+	for (int i = 0; pSnake != NULL; i++)
 	{
-		sRec[i] = { pSnake->x_pos, pSnake->y_pos, 10, 10 };
+		this->m_sRec[i] = { pSnake->x_pos, pSnake->y_pos, 10, 10 };
 		pSnake = pSnake->next;
 	}
-	return sRec;
+	return this->m_sRec;
 }

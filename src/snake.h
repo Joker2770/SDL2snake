@@ -70,7 +70,9 @@ class Snake
 	public:
 		Snake() : m_iLength(2)
 		{
-			this->m_snake = (SnakeList)malloc((SCREEN_WIDTH*SCREEN_HEIGHT / 100) * sizeof(SnakeNode));
+			this->m_snake = (SnakeList)malloc(sizeof(SnakeNode));
+			memset(this->m_sRec, 0, sizeof(this->m_snake));
+			this->m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100] = {};
 
 			switch(rand()%4)
 			{
@@ -113,6 +115,8 @@ class Snake
 		SnakeList m_snake;
 		int m_iLength;
 		DRIVER_DIRECTION m_CurDirection;
+		//At most (SCREEN_WIDTH*SCREEN_HEIGHT / 100) snake nodes;
+		SDL_Rect m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100];
 
 	private:
 

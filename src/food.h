@@ -64,6 +64,12 @@ class Food
 	public:
 		Food():m_x_pos((rand()%SCREEN_WIDTH)/10*10), m_y_pos((rand()%SCREEN_HEIGHT)/10*10)
 		{
+			this->m_sRec[0] = {
+				this->m_x_pos,
+				this->m_y_pos,
+				10,
+				10
+			};
 			this->beEaten = false;
 		}
 		~Food()

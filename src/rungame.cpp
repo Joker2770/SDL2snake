@@ -54,6 +54,7 @@ extern "C"
 #endif
 
 #include <stdio.h>
+#include <time.h>
 #include"config.h"
 #include"snake.h"
 #include"food.h"
@@ -75,9 +76,11 @@ SDL_Renderer* gRenderer = NULL;
 
 int main(int argc, char *argv[])
 {
+	//Initialize the random number seed for rand()
+	srand((unsigned)time(NULL));
+
 	Snake *snake = new Snake();
 	Food *food = new Food();
-	SDL_Rect *pSRec = (SDL_Rect *)malloc((SCREEN_WIDTH*SCREEN_HEIGHT / 100) * sizeof(SDL_Rect));
 	
 	if (!init())
 	{
@@ -118,21 +121,45 @@ int main(int argc, char *argv[])
 				
 				//Render red filled quad
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
-				food->beEaten = true;
-				SDL_RenderFillRect(gRenderer, food->drawSelf());
+				//Generate food
+				printf("Generate food!\n");
+				bool bFoodOnSnake = false;
+				do
+				{
+					food->drawSelf();
+
+					SnakeList pFound = snake->m_snake;
+					do
+					{
+						if ((pFound->x_pos == food->m_x_pos) && (pFound->y_pos == food->m_y_pos))
+						{
+							bFoodOnSnake = true;
+							break;
+						}
+						
+						pFound = pFound->next;
+					} while (NULL != pFound);
+
+				}while (bFoodOnSnake);
+				food->beEaten = false;
+
+				//Recover food
+				if (NULL != food->m_sRec)
+					SDL_RenderFillRect(gRenderer, &(food->m_sRec[0]));
 
 				snake->initSelf();
-				memset(pSRec, 0, sizeof(pSRec));
-				pSRec = snake->drawSelf();
+				snake->drawSelf();
 				for (int i = 0; i < snake->m_iLength; i++)
 				{
 					//Render green filled quad
 					SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF);
-					SDL_RenderFillRect(gRenderer, &pSRec[i]); 
+					SDL_RenderFillRect(gRenderer, &(snake->m_sRec[i])); 
 					//Render blue outlined quad
 					SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0xFF, 0xFF);
-					SDL_RenderDrawRect(gRenderer, &pSRec[i]);
+					SDL_RenderDrawRect(gRenderer, &(snake->m_sRec[i]));
 				}
+
+				food->beEaten = true;
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);
@@ -158,12 +185,6 @@ int main(int argc, char *argv[])
 	{
 		delete snake;
 		snake = NULL;
-	}
-
-	if (NULL != pSRec)
-	{
-		free(pSRec);
-		pSRec = NULL;
 	}
 
 	return 0;
