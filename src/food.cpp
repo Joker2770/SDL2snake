@@ -35,11 +35,8 @@ using namespace std;
 
 SDL_Rect* Food::drawSelf()
 {
-	if (beEaten)
-	{
-		this->m_x_pos = (rand()%SCREEN_WIDTH)/10*10;
-		this->m_y_pos = (rand()%SCREEN_HEIGHT)/10*10;
-	}
+	this->m_x_pos = (rand()%SCREEN_WIDTH)/10*10;
+	this->m_y_pos = (rand()%SCREEN_HEIGHT)/10*10;
 
 	this->m_sRec[0] = {
 		this->m_x_pos,

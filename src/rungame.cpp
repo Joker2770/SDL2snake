@@ -126,21 +126,26 @@ int main(int argc, char *argv[])
 				bool bFoodOnSnake = false;
 				do
 				{
-					food->drawSelf();
-
+					if (food->beEaten || bFoodOnSnake)
+						food->drawSelf();
+					//Point to m_snake head
 					SnakeList pFound = snake->m_snake;
 					do
 					{
+						//Judge if food on snake
 						if ((pFound->x_pos == food->m_x_pos) && (pFound->y_pos == food->m_y_pos))
 						{
+							printf("Food on snake\n");
 							bFoodOnSnake = true;
 							break;
 						}
+						else 
+							bFoodOnSnake = false;
 						
 						pFound = pFound->next;
 					} while (NULL != pFound);
-
-				}while (bFoodOnSnake);
+				} while (bFoodOnSnake);
+			
 				food->beEaten = false;
 
 				//Recover food
