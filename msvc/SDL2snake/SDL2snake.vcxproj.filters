@@ -18,30 +18,24 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\config.h">
+    <ClInclude Include="..\..\src\config.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\controller.h">
+    <ClInclude Include="..\..\src\food.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\food.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\snake.h">
+    <ClInclude Include="..\..\src\snake.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\controller.cpp">
+    <ClCompile Include="..\..\src\food.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\food.cpp">
+    <ClCompile Include="..\..\src\rungame.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\rungame.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\snake.cpp">
+    <ClCompile Include="..\..\src\snake.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
