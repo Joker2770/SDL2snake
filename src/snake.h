@@ -57,13 +57,7 @@ extern "C"
 #include <stdio.h>
 #include <stdlib.h>
 #include "config.h"
-
-typedef struct snake_node
-{
-	int x_pos;
-	int y_pos;
-	struct snake_node* next;
-}SnakeNode, *SnakeList;
+#include "SnakeLinkList.h"
 
 class Snake
 {
