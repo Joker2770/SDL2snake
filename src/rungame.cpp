@@ -33,7 +33,6 @@ SOFTWARE.
 //Windows
 extern "C"
 {
-#include <windows.h> //Use Sleep().
 #include "SDL.h"
 };
 #else
@@ -45,7 +44,6 @@ extern "C"
 #endif
 	
 #include<SDL2/SDL.h>
-#include<unistd.h>
 
 //Linux C++
 #ifdef __cplusplus
@@ -81,6 +79,8 @@ int main(int argc, char *argv[])
 
 	Snake *snake = new Snake();
 	Food *food = new Food();
+
+	snake->initSelf();
 	
 	if (!init())
 	{
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
 				if (NULL != food->m_sRec)
 					SDL_RenderFillRect(gRenderer, &(food->m_sRec[0]));
 
-				snake->initSelf();
+				snake->moveSelf();
 				snake->drawSelf();
 				for (int i = 0; i < snake->m_iLength; i++)
 				{
@@ -168,12 +168,6 @@ int main(int argc, char *argv[])
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);
-
-#ifdef _WIN32
-				Sleep(2000);
-#else
-				sleep(2);
-#endif
 
 			}
 		}

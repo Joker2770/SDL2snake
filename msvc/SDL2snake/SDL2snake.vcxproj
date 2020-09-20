@@ -130,11 +130,13 @@
     <ClInclude Include="..\..\src\config.h" />
     <ClInclude Include="..\..\src\food.h" />
     <ClInclude Include="..\..\src\snake.h" />
+    <ClInclude Include="..\..\src\SnakeLinkList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\food.cpp" />
     <ClCompile Include="..\..\src\rungame.cpp" />
     <ClCompile Include="..\..\src\snake.cpp" />
+    <ClCompile Include="..\..\src\SnakeLinkList.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

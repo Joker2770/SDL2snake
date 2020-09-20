@@ -40,12 +40,10 @@ void Snake::eatfood()
 
 void Snake::initSelf()
 {
-	this->m_snake->x_pos = SCREEN_WIDTH / 2;
-	this->m_snake->y_pos = SCREEN_HEIGHT / 2;
-	this->m_snake->next = (SnakeList)malloc(sizeof(SnakeNode));
-	this->m_snake->next->x_pos = this->m_snake->x_pos + 10;
-	this->m_snake->next->y_pos = this->m_snake->y_pos;
-	this->m_snake->next->next = NULL;
+// 	this->m_snake->next = (SnakeList)malloc(sizeof(SnakeNode));
+// 	this->m_snake->next->x_pos = this->m_snake->x_pos + 10;
+// 	this->m_snake->next->y_pos = this->m_snake->y_pos;
+// 	this->m_snake->next->next = NULL;
 	//this->m_iLength = 2;
 }
 
@@ -60,9 +58,46 @@ bool Snake::isAlive()
 	return true;
 }
 
-void Snake::moveSelf(DRIVER_DIRECTION iDir)
+void Snake::moveSelf()
 {
+	//Delete the end node first;
+	this->m_iLength = countSnakeLength(this->m_snake);
+	//Then add a new node to the beginning, the length do not change but snake move;
+	printf("CurDirection = %d\n", this->m_CurDirection);
+	printList(this->m_snake);
+	int tmp = 0;
+	switch (this->m_CurDirection)
+	{
+	case UP:
+		tmp = this->m_snake->y_pos - 10;
+		this->m_snake = insertNode(this->m_snake, 0, this->m_snake->x_pos, tmp);
+		break;
+	case DOWN:
+		tmp = this->m_snake->y_pos + 10;
+		this->m_snake = insertNode(this->m_snake, 0, this->m_snake->x_pos, tmp);
+		break;
+	case LEFT:
+		tmp = this->m_snake->x_pos - 10;
+		this->m_snake = insertNode(this->m_snake, 0, tmp, this->m_snake->y_pos);
+		break;
+	case RIGHT:
+		tmp = this->m_snake->x_pos + 10;
+		this->m_snake = insertNode(this->m_snake, 0, tmp, this->m_snake->y_pos);
+		break;
+	default:
+		break;
+	}
+	this->m_iLength = countSnakeLength(this->m_snake);
+	this->m_snake = deleteNode(this->m_snake, this->m_iLength);
+	printList(this->m_snake);
 
+	this->m_iLength = countSnakeLength(this->m_snake);
+
+#ifdef _WIN32
+	Sleep(2000);
+#else
+	sleep(2);
+#endif
 }
 
 bool Snake::isEatSelf()
