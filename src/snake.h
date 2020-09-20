@@ -34,7 +34,6 @@ SOFTWARE.
 
 #ifdef _WIN32
 //Windows
-#include <windows.h> //Use Sleep().
 extern "C"
 {
 #include "SDL.h"
@@ -42,7 +41,6 @@ extern "C"
 #else
 //Linux
 //Linux C++
-#include<unistd.h>
 #ifdef __cplusplus
 extern "C"
 {
@@ -99,6 +97,7 @@ class Snake
 
 	public:
 		void moveSelf();
+		void changeDirection(DRIVER_DIRECTION direction);
 		SDL_Rect* drawSelf();
 		bool isEatSelf();
 		bool isAlive();
@@ -107,11 +106,11 @@ class Snake
 		SnakeList m_snake;
 		int m_iLength;
 		bool isEating;
-		DRIVER_DIRECTION m_CurDirection;
 		//At most (SCREEN_WIDTH*SCREEN_HEIGHT / 100) snake nodes;
 		SDL_Rect m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100];
 
 	private:
+		DRIVER_DIRECTION m_CurDirection;
 
 };
 

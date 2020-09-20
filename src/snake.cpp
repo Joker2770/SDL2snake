@@ -88,12 +88,31 @@ void Snake::moveSelf()
 
 	//Update length
 	this->m_iLength = countSnakeLength(this->m_snake);
+}
 
-#ifdef _WIN32
-	Sleep(2000);
-#else
-	sleep(2);
-#endif
+void Snake::changeDirection(DRIVER_DIRECTION direction)
+{
+	switch (direction)
+	{
+	case UP:
+		if (DOWN != this->m_CurDirection)
+			this->m_CurDirection = UP;
+		break;
+	case DOWN:
+		if (UP != this->m_CurDirection)
+			this->m_CurDirection = DOWN;
+		break;
+	case LEFT:
+		if (RIGHT != this->m_CurDirection)
+			this->m_CurDirection = LEFT;
+		break;
+	case RIGHT:
+		if (LEFT != this->m_CurDirection)
+			this->m_CurDirection = RIGHT;
+		break;
+	default:
+		break;
+	}
 }
 
 bool Snake::isEatSelf()

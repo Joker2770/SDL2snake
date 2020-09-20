@@ -31,6 +31,7 @@ SOFTWARE.
 
 #ifdef _WIN32
 //Windows
+#include <windows.h> //Use Sleep().
 extern "C"
 {
 #include "SDL.h"
@@ -38,6 +39,7 @@ extern "C"
 #else
 //Linux
 //Linux C++
+#include<unistd.h>	//Use Sleep().
 #ifdef __cplusplus
 extern "C"
 {
@@ -102,6 +104,12 @@ int main(int argc, char *argv[])
 			//While application is running
 			while (!quit)
 			{
+#ifdef _WIN32
+				Sleep(2000);
+#else
+				sleep(2);
+#endif
+
 				//Handle events on queue
 				while (SDL_PollEvent(&e) != 0)
 				{
@@ -109,6 +117,26 @@ int main(int argc, char *argv[])
 					if (e.type == SDL_QUIT)
 					{
 						quit = true;
+					}
+					else if(e.type == SDL_KEYDOWN)
+					{
+						switch (e.key.keysym.sym)
+						{
+						case SDLK_UP:
+							snake->changeDirection(UP);
+							break;
+						case SDLK_DOWN:
+							snake->changeDirection(DOWN);
+							break;
+						case SDLK_LEFT:
+							snake->changeDirection(LEFT);
+							break;
+						case SDLK_RIGHT:
+							snake->changeDirection(RIGHT);
+							break;
+						default:
+							break;
+						}
 					}
 				}
 
