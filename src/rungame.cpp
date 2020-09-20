@@ -154,6 +154,11 @@ int main(int argc, char *argv[])
 				if (snake->m_snake->x_pos == food->m_x_pos && snake->m_snake->y_pos == food->m_y_pos)
 				{
 					snake->isEating = true;
+					food->beEaten = true;
+				}
+				if (!snake->isAlive())
+				{
+					quit = true;
 				}
 				snake->drawSelf();
 				for (int i = 0; i < snake->m_iLength; i++)
@@ -165,8 +170,6 @@ int main(int argc, char *argv[])
 					SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0xFF, 0xFF);
 					SDL_RenderDrawRect(gRenderer, &(snake->m_sRec[i]));
 				}
-
-				food->beEaten = true;
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);
