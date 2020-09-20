@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
 
 				//Clear screen
 				printf("Clear screen!\n");
-				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_SetRenderDrawColor(gRenderer, 199, 237, 204, 0xFF);
 				SDL_RenderClear(gRenderer);
 				
 				//Render red filled quad
@@ -193,6 +193,8 @@ int main(int argc, char *argv[])
 				{
 					//Render green filled quad
 					SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF);
+					if (0 == i)
+						SDL_SetRenderDrawColor(gRenderer, 0xB2, 0x22, 0x22, 0xFF);
 					SDL_RenderFillRect(gRenderer, &(snake->m_sRec[i])); 
 					//Render blue outlined quad
 					SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0xFF, 0xFF);
