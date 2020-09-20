@@ -33,20 +33,6 @@ SOFTWARE.
 #include<iostream>
 using namespace std;
 
-void Snake::eatfood()
-{
-
-}
-
-void Snake::initSelf()
-{
-// 	this->m_snake->next = (SnakeList)malloc(sizeof(SnakeNode));
-// 	this->m_snake->next->x_pos = this->m_snake->x_pos + 10;
-// 	this->m_snake->next->y_pos = this->m_snake->y_pos;
-// 	this->m_snake->next->next = NULL;
-	//this->m_iLength = 2;
-}
-
 bool Snake::isAlive()
 {
 	if (this->m_snake->x_pos > SCREEN_WIDTH || this->m_snake->x_pos < 0 || this->m_snake->y_pos > SCREEN_HEIGHT || this->m_snake->y_pos < 0)
@@ -60,11 +46,12 @@ bool Snake::isAlive()
 
 void Snake::moveSelf()
 {
-	//Delete the end node first;
+	//Update length
 	this->m_iLength = countSnakeLength(this->m_snake);
-	//Then add a new node to the beginning, the length do not change but snake move;
+
 	printf("CurDirection = %d\n", this->m_CurDirection);
 	printList(this->m_snake);
+
 	int tmp = 0;
 	switch (this->m_CurDirection)
 	{
@@ -87,10 +74,19 @@ void Snake::moveSelf()
 	default:
 		break;
 	}
+	//Update length
 	this->m_iLength = countSnakeLength(this->m_snake);
-	this->m_snake = deleteNode(this->m_snake, this->m_iLength);
+
+	if (!this->isEating)
+		this->m_snake = deleteNode(this->m_snake, this->m_iLength);
+	else
+		printf("Snake eating food...\n");
+	//Change isEating flag
+	this->isEating = false;
+
 	printList(this->m_snake);
 
+	//Update length
 	this->m_iLength = countSnakeLength(this->m_snake);
 
 #ifdef _WIN32

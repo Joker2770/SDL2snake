@@ -64,12 +64,13 @@ extern "C"
 class Snake
 {
 	public:
-		Snake() : m_iLength(2)
+		Snake() : m_iLength(2), isEating(false)
 		{
 			this->m_snake = NULL;
 			this->m_snake = insertNode(this->m_snake, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 			this->m_snake = insertNode(this->m_snake, 0, SCREEN_WIDTH / 2 + 10, SCREEN_HEIGHT / 2);
 			printList(this->m_snake);
+
 			this->m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100] = {};
 
 			switch(rand()%4)
@@ -97,9 +98,7 @@ class Snake
 		}
 
 	public:
-		void initSelf();
 		void moveSelf();
-		void eatfood();
 		SDL_Rect* drawSelf();
 		bool isEatSelf();
 		bool isAlive();
@@ -107,6 +106,7 @@ class Snake
 	public:
 		SnakeList m_snake;
 		int m_iLength;
+		bool isEating;
 		DRIVER_DIRECTION m_CurDirection;
 		//At most (SCREEN_WIDTH*SCREEN_HEIGHT / 100) snake nodes;
 		SDL_Rect m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100];

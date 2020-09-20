@@ -79,8 +79,6 @@ int main(int argc, char *argv[])
 
 	Snake *snake = new Snake();
 	Food *food = new Food();
-
-	snake->initSelf();
 	
 	if (!init())
 	{
@@ -153,6 +151,10 @@ int main(int argc, char *argv[])
 					SDL_RenderFillRect(gRenderer, &(food->m_sRec[0]));
 
 				snake->moveSelf();
+				if (snake->m_snake->x_pos == food->m_x_pos && snake->m_snake->y_pos == food->m_y_pos)
+				{
+					snake->isEating = true;
+				}
 				snake->drawSelf();
 				for (int i = 0; i < snake->m_iLength; i++)
 				{
