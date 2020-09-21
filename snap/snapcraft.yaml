@@ -33,4 +33,5 @@
   
       stage-packages:
         - libsdl2-2.0-0
+        - libgl1-mesa-glx
         - libglu1-mesa
