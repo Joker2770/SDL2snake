@@ -30,8 +30,6 @@ SOFTWARE.
 */
 
 #include "food.h"
-#include<iostream>
-using namespace std;
 
 SDL_Rect* Food::drawSelf()
 {

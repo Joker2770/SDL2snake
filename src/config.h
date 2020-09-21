@@ -32,9 +32,6 @@ SOFTWARE.
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
-#include<iostream>
-using namespace std;
-
 typedef enum driver_direction
 {
 	UP = 1,

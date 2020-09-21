@@ -30,8 +30,6 @@ SOFTWARE.
 */
 
 #include "snake.h"
-#include<iostream>
-using namespace std;
 
 bool Snake::isAlive()
 {
