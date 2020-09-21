@@ -12,7 +12,7 @@
   
   apps:
     sdl2snake:
-      command: /bin/sdl2snake
+      command: sdl2snake
     
   parts:
     sdl2snake:
