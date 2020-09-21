@@ -208,7 +208,6 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	closeAll();
 	
 	if (NULL != food)
 	{
@@ -221,6 +220,8 @@ int main(int argc, char *argv[])
 		delete snake;
 		snake = NULL;
 	}
+
+	closeAll();
 
 	return 0;
 }
