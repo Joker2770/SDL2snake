@@ -48,7 +48,6 @@
       #
       desktop-glib-only:
         source: "https://github.com/ubuntu/snapcraft-desktop-helpers.git"
-        source-depth: 1
         source-branch: master
         source-type: git
         source-subdir: glib-only
