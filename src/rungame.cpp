@@ -283,11 +283,17 @@ bool loadMedia()
 
 void closeAll()
 {
-	//Destroy window    
-	SDL_DestroyRenderer(gRenderer);
-	SDL_DestroyWindow(gWindow);
-	gWindow = NULL;
-	gRenderer = NULL;
+	//Destroy window
+	if (NULL != gRenderer)
+	{
+		SDL_DestroyRenderer(gRenderer);
+		gRenderer = NULL;
+	}
+	if (NULL != gWindow)
+	{
+		SDL_DestroyWindow(gWindow);
+		gWindow = NULL;
+	}
 
 	//Quit SDL subsystems
 	SDL_Quit();
