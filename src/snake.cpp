@@ -96,19 +96,83 @@ void Snake::changeDirection(DRIVER_DIRECTION direction)
 	{
 	case UP:
 		if (DOWN != this->m_CurDirection)
+		{
+			if (UP == this->m_CurDirection)
+			{
+				if (this->m_drag > 500000)
+				{
+					this->m_drag -= 500000;
+				}
+			}
 			this->m_CurDirection = UP;
+		}
+		else
+		{
+			if (4000000 > this->m_drag)
+			{
+				this->m_drag += 500000;
+			}
+		}
 		break;
 	case DOWN:
 		if (UP != this->m_CurDirection)
+		{
+			if (DOWN == this->m_CurDirection)
+			{
+				if (this->m_drag > 500000)
+				{
+					this->m_drag -= 500000;
+				}
+			}
 			this->m_CurDirection = DOWN;
+		}
+		else
+		{
+			if (4000000 > this->m_drag)
+			{
+				this->m_drag += 500000;
+			}
+		}
 		break;
 	case LEFT:
 		if (RIGHT != this->m_CurDirection)
+		{
+			if (LEFT == this->m_CurDirection)
+			{
+				if (this->m_drag > 500000)
+				{
+					this->m_drag -= 500000;
+				}
+			}
 			this->m_CurDirection = LEFT;
+		}
+		else
+		{
+			if (4000000 > this->m_drag)
+			{
+				this->m_drag += 500000;
+			}
+		}
 		break;
 	case RIGHT:
 		if (LEFT != this->m_CurDirection)
+		{
+			if (RIGHT == this->m_CurDirection)
+			{
+				if (this->m_drag > 500000)
+				{
+					this->m_drag -= 500000;
+				}
+			}
 			this->m_CurDirection = RIGHT;
+		}
+		else
+		{
+			if (4000000 > this->m_drag)
+			{
+				this->m_drag += 500000;
+			}
+		}
 		break;
 	default:
 		break;

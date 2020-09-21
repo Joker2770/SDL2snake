@@ -62,7 +62,7 @@ extern "C"
 class Snake
 {
 	public:
-		Snake() : m_iLength(2), isEating(false)
+		Snake() : m_iLength(2), isEating(false), m_drag(2000000)
 		{
 			this->m_snake = NULL;
 			this->m_snake = insertNode(this->m_snake, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
@@ -105,6 +105,7 @@ class Snake
 	public:
 		SnakeList m_snake;
 		int m_iLength;
+		int m_drag;
 		bool isEating;
 		//At most (SCREEN_WIDTH*SCREEN_HEIGHT / 100) snake nodes;
 		SDL_Rect m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100];

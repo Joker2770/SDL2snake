@@ -104,10 +104,11 @@ int main(int argc, char *argv[])
 			//While application is running
 			while (!quit)
 			{
+				printf("drag: %d\n", snake->m_drag);
 #ifdef _WIN32
-				Sleep(2000);
+				Sleep((int)((snake->m_drag)/1000));
 #else
-				sleep(2);
+				usleep(snake->m_drag);
 #endif
 
 				//Handle events on queue
