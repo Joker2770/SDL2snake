@@ -135,6 +135,12 @@ int main(int argc, char *argv[])
 						case SDLK_RIGHT:
 							snake->changeDirection(RIGHT);
 							break;
+						case SDLK_q:
+							quit = true;
+							break;
+						case SDLK_ESCAPE:
+							quit = true;
+							break;
 						default:
 							break;
 						}
@@ -255,7 +261,7 @@ bool init()
 		else
 		{
 			//Create renderer for window
-			gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+			gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_SOFTWARE);
 			if (gRenderer == NULL)
 			{
 				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());

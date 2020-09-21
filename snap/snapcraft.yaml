@@ -6,21 +6,20 @@
   description: |
     More detail please view: < https://github.com/Joker2770/SDL2snake >.
 
-  grade: devel # must be 'stable' to release into candidate/stable channels
-  confinement: devmode # use 'strict' once you have the right plugs and slots
+  grade: stable # must be 'stable' to release into candidate/stable channels
+  confinement: strict # use 'strict' once you have the right plugs and slots
   base: core18
   
   apps:
     sdl2snake:
       command: bin/SDL2snake
-      plugs:
-        - opengl
+      # plugs:
+        # - opengl
     
   parts:
     sdl2snake:
-      after:
-        - desktop-glib-only
-      # See 'snapcraft plugins'
+      # after:
+        # - desktop-glib-only
       plugin: cmake
       source: "https://github.com/Joker2770/SDL2snake.git"
       source-depth: 1
@@ -35,8 +34,8 @@
   
       stage-packages:
         - libsdl2-2.0-0
-        - libgl1-mesa-glx
-        - libglu1-mesa
+        # - libgl1-mesa-glx
+        # - libglu1-mesa
         
     # This part installs the glib dependencies and a `desktop-launch` script to initialise
     # desktop-specific features such as OpenGL, fonts, themes and the XDG environment.
@@ -46,13 +45,13 @@
     # Please periodically check the desktop helpers repo for updates and copy the changes.
     #    https://github.com/ubuntu/snapcraft-desktop-helpers/blob/master/snapcraft.yaml
     #
-    desktop-glib-only:
-      source: "https://github.com/ubuntu/snapcraft-desktop-helpers.git"
-      source-branch: master
-      source-type: git
-      source-subdir: glib-only
-      plugin: make
-      build-packages:
-        - libglib2.0-dev
-      stage-packages:
-        - libglib2.0-bin
+    # desktop-glib-only:
+      # source: "https://github.com/ubuntu/snapcraft-desktop-helpers.git"
+      # source-branch: master
+      # source-type: git
+      # source-subdir: glib-only
+      # plugin: make
+      # build-packages:
+        # - libglib2.0-dev
+      # stage-packages:
+        # - libglib2.0-bin
