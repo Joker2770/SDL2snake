@@ -38,21 +38,21 @@
         - libgl1-mesa-glx
         - libglu1-mesa
         
-      # This part installs the glib dependencies and a `desktop-launch` script to initialise
-      # desktop-specific features such as OpenGL, fonts, themes and the XDG environment.
-      # 
-      # It is copied from the snapcraft desktop helpers project and the `source` key is
-      # changed to point to https://github.com/ubuntu/snapcraft-desktop-helpers.git
-      # Please periodically check the desktop helpers repo for updates and copy the changes.
-      #    https://github.com/ubuntu/snapcraft-desktop-helpers/blob/master/snapcraft.yaml
-      #
-      desktop-glib-only:
-        source: "https://github.com/ubuntu/snapcraft-desktop-helpers.git"
-        source-branch: master
-        source-type: git
-        source-subdir: glib-only
-        plugin: make
-        build-packages:
-          - libglib2.0-dev
-        stage-packages:
-          - libglib2.0-bin
+    # This part installs the glib dependencies and a `desktop-launch` script to initialise
+    # desktop-specific features such as OpenGL, fonts, themes and the XDG environment.
+    # 
+    # It is copied from the snapcraft desktop helpers project and the `source` key is
+    # changed to point to https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    # Please periodically check the desktop helpers repo for updates and copy the changes.
+    #    https://github.com/ubuntu/snapcraft-desktop-helpers/blob/master/snapcraft.yaml
+    #
+    desktop-glib-only:
+      source: "https://github.com/ubuntu/snapcraft-desktop-helpers.git"
+      source-branch: master
+      source-type: git
+      source-subdir: glib-only
+      plugin: make
+      build-packages:
+        - libglib2.0-dev
+      stage-packages:
+        - libglib2.0-bin
