@@ -6,13 +6,15 @@
   description: |
     More detail please view: < https://github.com/Joker2770/SDL2snake >.
 
-  grade: stable # must be 'stable' to release into candidate/stable channels
-  confinement: strict # use 'strict' once you have the right plugs and slots
+  grade: devel # must be 'stable' to release into candidate/stable channels
+  confinement: devmode # use 'strict' once you have the right plugs and slots
   base: core18
   
   apps:
     sdl2snake:
       command: bin/SDL2snake
+      plugs:
+        - opengl
     
   parts:
     sdl2snake:
@@ -31,3 +33,4 @@
   
       stage-packages:
         - libsdl2-2.0-0
+        - libglu1-mesa
