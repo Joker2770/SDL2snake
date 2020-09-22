@@ -15,7 +15,6 @@ if(UNIX)
 	find_package( PkgConfig REQUIRED )
 	pkg_check_modules( sdl2 REQUIRED IMPORTED_TARGET sdl2 )
 	pkg_check_modules( SDL2_ttf REQUIRED IMPORTED_TARGET SDL2_ttf )
-	pkg_check_modules( SDL2_image REQUIRED IMPORTED_TARGET SDL2_image )
 endif()
 
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIR})
