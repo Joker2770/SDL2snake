@@ -378,7 +378,7 @@ bool loadMedia()
 		{
 			printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
 			//For snap
-			gFont = TTF_OpenFont("usr/local/bin/lazy.ttf", 28);
+			gFont = TTF_OpenFont("/snap/sdl2snake/current/usr/local/bin/lazy.ttf", 28);
 			if (NULL == gFont)
 			{
 				printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
