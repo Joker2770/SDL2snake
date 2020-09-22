@@ -35,6 +35,7 @@ SOFTWARE.
 extern "C"
 {
 #include "SDL.h"
+#include "SDL_ttf.h"
 };
 #else
 //Linux
@@ -46,6 +47,7 @@ extern "C"
 #endif
 	
 #include<SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
 //Linux C++
 #ifdef __cplusplus
@@ -55,9 +57,10 @@ extern "C"
 
 #include <stdio.h>
 #include <time.h>
-#include"config.h"
-#include"snake.h"
-#include"food.h"
+#include "config.h"
+#include "snake.h"
+#include "food.h"
+#include "renderer.h"
 
 //Starts up SDL and creates window
 bool init();
@@ -74,6 +77,9 @@ SDL_Window* gWindow = NULL;
 //The window renderer
 SDL_Renderer* gRenderer = NULL;
 
+//Globally used font
+TTF_Font *gFont = NULL;
+
 int main(int argc, char *argv[])
 {
 	//Initialize the random number seed for rand()
@@ -81,6 +87,7 @@ int main(int argc, char *argv[])
 
 	Snake *snake = new Snake();
 	Food *food = new Food();
+	Renderer *LRenderer = new Renderer();
 	
 	if (!init())
 	{
@@ -95,6 +102,26 @@ int main(int argc, char *argv[])
 		}
 		else
 		{
+			//Render text
+			SDL_Color textColor = { 0, 0, 0, 0 };
+			if (LRenderer->loadFromRenderedText(gRenderer, gFont, "Ready...", textColor))
+			{
+				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_RenderClear(gRenderer);
+
+				LRenderer->render(gRenderer, (SCREEN_WIDTH - LRenderer->getWidth()) / 2, (SCREEN_HEIGHT - LRenderer->getHeight()) / 2);
+				printf("LRenderer: w = %d, h = %d\n", LRenderer->getWidth(), LRenderer->getHeight());
+				SDL_RenderPresent(gRenderer);
+
+#ifdef _WIN32
+				Sleep(3000);
+#else
+				usleep(3000000);
+#endif
+
+				SDL_RenderClear(gRenderer);
+			}
+
 			//Main loop flag
 			bool quit = false;
 
@@ -104,13 +131,6 @@ int main(int argc, char *argv[])
 			//While application is running
 			while (!quit)
 			{
-				printf("drag: %d\n", snake->m_drag);
-#ifdef _WIN32
-				Sleep((int)((snake->m_drag)/1000));
-#else
-				usleep(snake->m_drag);
-#endif
-
 				//Handle events on queue
 				while (SDL_PollEvent(&e) != 0)
 				{
@@ -186,15 +206,6 @@ int main(int argc, char *argv[])
 					SDL_RenderFillRect(gRenderer, &(food->m_sRec[0]));
 
 				snake->moveSelf();
-				if (snake->m_snake->x_pos == food->m_x_pos && snake->m_snake->y_pos == food->m_y_pos)
-				{
-					snake->isEating = true;
-					food->beEaten = true;
-				}
-				if (!snake->isAlive())
-				{
-					quit = true;
-				}
 				snake->drawSelf();
 				for (int i = 0; i < snake->m_iLength; i++)
 				{
@@ -207,12 +218,79 @@ int main(int argc, char *argv[])
 					SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0xFF, 0xFF);
 					SDL_RenderDrawRect(gRenderer, &(snake->m_sRec[i]));
 				}
+				if (snake->m_snake->x_pos == food->m_x_pos && snake->m_snake->y_pos == food->m_y_pos)
+				{
+					snake->isEating = true;
+					food->beEaten = true;
+				}
+				if (!snake->isAlive())
+				{
+					//Initialize renderer color
+					SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+					SDL_RenderClear(gRenderer);
+
+					//Render text
+					SDL_Color textColor = { 0, 0, 0, 0 };
+					char sText[128] = "\0";
+					snprintf(sText, sizeof(sText), "Game Over!You get %d.", snake->m_iLength);
+					printf("%s\n", sText);
+ 					if (LRenderer->loadFromRenderedText(gRenderer, gFont, sText, textColor))
+ 					{
+						LRenderer->render(gRenderer, (SCREEN_WIDTH - LRenderer->getWidth()) / 2, (SCREEN_HEIGHT - LRenderer->getHeight()) / 2);
+						printf("LRenderer: w = %d, h = %d\n", LRenderer->getWidth(), LRenderer->getHeight());
+					}
+
+					//Update screen
+					SDL_RenderPresent(gRenderer);
+
+					SDL_Event e;
+					while (!quit)
+					{
+						while (0 != SDL_PollEvent(&e))
+						{
+							//User requests quit
+							if (e.type == SDL_QUIT)
+							{
+								quit = true;
+							}
+							else if (e.type == SDL_KEYDOWN)
+							{
+								switch (e.key.keysym.sym)
+								{
+								case SDLK_q:
+									quit = true;
+									break;
+								case SDLK_ESCAPE:
+									quit = true;
+									break;
+								default:
+									break;
+								}
+							}
+						}
+					}
+				}
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);
 
+				printf("drag: %d\n", snake->m_drag);
+#ifdef _WIN32
+				Sleep((int)((snake->m_drag) / 1000));
+#else
+				usleep(snake->m_drag);
+#endif
+
+
 			}
 		}
+	}
+
+	if (NULL != LRenderer)
+	{
+		LRenderer->Free();
+		delete LRenderer;
+		LRenderer = NULL;
 	}
 	
 	if (NULL != food)
@@ -271,6 +349,12 @@ bool init()
 			{
 				//Initialize renderer color
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+				//Initialize SDL_ttf
+				if (TTF_Init() == -1)
+				{
+					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+				}
 			}
 
 		}
@@ -283,6 +367,11 @@ bool loadMedia()
 {
 	//Loading success flag
 	bool success = true;
+
+	//Open the font
+	gFont = TTF_OpenFont(TTF_PATH, 28);
+	if (gFont == NULL)
+		printf("Failed to load lazy font: %s! SDL_ttf Error: %s\n", TTF_PATH, TTF_GetError());
 
 	//Nothing to load
 	return success;
@@ -300,6 +389,14 @@ void closeAll()
 	{
 		SDL_DestroyWindow(gWindow);
 		gWindow = NULL;
+	}
+
+	//Free global font
+	if (NULL != gFont)
+	{
+		TTF_CloseFont(gFont);
+		TTF_Quit();
+		gFont = NULL;
 	}
 
 	//Quit SDL subsystems

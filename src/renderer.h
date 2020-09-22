@@ -1,8 +1,8 @@
 /*************************************************************************
-    > File Name: config.h
+    > File Name: renderer.h
     > Author: Jintao Yang
     > Mail: 18608842770@163.com 
-    > Created Time: Tue Sep  8 16:02:36 2020
+    > Created Time: Tue Sep 22 09:59:25 2020
  ************************************************************************/
 
 /*
@@ -29,24 +29,64 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef __CONFIG_H__
-#define __CONFIG_H__
+#ifndef __RENDER_H__
+#define __RENDER_H__
 
 #ifdef _WIN32
-#define TTF_PATH "./lazy.ttf"
-#else
-#define TTF_PATH "/usr/local/bin/lazy.ttf"
-#endif
-
-typedef enum driver_direction
+//Windows
+extern "C"
 {
-	UP = 1,
-	DOWN = -1,
-	LEFT = -2,
-	RIGHT= 2
-}DRIVER_DIRECTION;
+#include "SDL.h"
+#include "SDL_ttf.h"
+};
+#else
+//Linux...
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+
+#ifdef __cplusplus
+};
+#endif
+#endif
+
+#include <stdio.h>
+
+class Renderer
+{
+public:
+	Renderer() : mTexture(NULL), mWidth(0), mHeight(0)
+	{
+	}
+	~Renderer() 
+	{
+		this->Free();
+	}
+
+	//Creates image from font string
+	bool loadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* font, const char* textureText, SDL_Color textColor);
+
+	//Deallocates texture
+	void Free();
+
+	//Renders texture at given point
+	void render(SDL_Renderer* Renderer, int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+
+	//Gets image dimensions
+	int getWidth();
+	int getHeight();
+
+private:
+	//The actual hardware texture
+	SDL_Texture* mTexture;
+
+	//Image dimensions
+	int mWidth;
+	int mHeight;
+};
 
 #endif
+
