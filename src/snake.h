@@ -109,8 +109,6 @@ class Snake
 		bool isEating;
 		//At most (SCREEN_WIDTH*SCREEN_HEIGHT / 100) snake nodes;
 		SDL_Rect m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100];
-
-	private:
 		DRIVER_DIRECTION m_CurDirection;
 
 };

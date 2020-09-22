@@ -131,6 +131,8 @@ int main(int argc, char *argv[])
 			//While application is running
 			while (!quit)
 			{
+				DRIVER_DIRECTION oldDirection = snake->m_CurDirection;
+
 				//Handle events on queue
 				while (SDL_PollEvent(&e) != 0)
 				{
@@ -165,6 +167,13 @@ int main(int argc, char *argv[])
 							break;
 						}
 					}
+				}
+
+				//Avoid to turn around
+				if (0 == (oldDirection + snake->m_CurDirection))
+				{
+					printf("Event queue lead to old direction opposite to new direction, fix it!\n");
+					snake->m_CurDirection = oldDirection;
 				}
 
 				//Clear screen
