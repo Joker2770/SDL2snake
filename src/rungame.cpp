@@ -370,14 +370,20 @@ bool loadMedia()
 
 	//Open the font
 	gFont = TTF_OpenFont(TTF_PATH, 28);
-	if (gFont == NULL)
+	if (NULL == gFont)
 	{
 		printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
 		gFont = TTF_OpenFont("lazy.ttf", 28);
-		if (gFont == NULL)
+		if (NULL == gFont)
 		{
 			printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
-			success = false;
+			//For snap
+			gFont = TTF_OpenFont("usr/local/bin/lazy.ttf", 28);
+			if (NULL == gFont)
+			{
+				printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
+				success = false;
+			}
 		}
 	}
 
