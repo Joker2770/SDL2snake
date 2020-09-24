@@ -241,7 +241,7 @@ int main(int argc, char *argv[])
 					//Render text
 					SDL_Color textColor = { 0, 0, 0, 0 };
 					char sText[128] = "\0";
-					snprintf(sText, sizeof(sText), "Game Over!You get %d.", snake->m_iLength);
+					snprintf(sText, sizeof(sText), "Game Over!You get %d.", snake->m_iLength - 2);
 					printf("%s\n", sText);
  					if (LRenderer->loadFromRenderedText(gRenderer, gFont, sText, textColor))
  					{
