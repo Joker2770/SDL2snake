@@ -15,6 +15,10 @@
       command: usr/local/bin/SDL2snake
       # plugs:
         # - opengl
+        
+  layout:
+    /usr/local/bin/lazy.ttf:
+      bind-file: $SNAP/usr/local/bin/lazy.ttf
     
   parts:
     sdl2snake:
