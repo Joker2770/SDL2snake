@@ -63,7 +63,7 @@ void printList(SnakeList pHead)
 
 SnakeList foundNode(SnakeList pHead, int idx)
 {
-	if (NULL == pHead || idx < 0)
+	if (NULL == pHead || idx <= 0)
 		return NULL;
 
 	SnakeList pFound = pHead;
