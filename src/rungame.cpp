@@ -297,7 +297,6 @@ int main(int argc, char *argv[])
 
 	if (NULL != LRenderer)
 	{
-		LRenderer->Free();
 		delete LRenderer;
 		LRenderer = NULL;
 	}
