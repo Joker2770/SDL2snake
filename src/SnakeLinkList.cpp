@@ -114,7 +114,6 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 		pe = foundNode(pHead, iCount);
 		if (NULL != pe)
 		{
-			p->next = NULL;
 			pe->next = p;
 		}
 		return pHead;

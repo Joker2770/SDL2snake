@@ -38,6 +38,7 @@ void Snake::initSelf(int ix, int iy)
 	this->m_snake = insertNode(this->m_snake, 1, ix + 10, iy);
 
 	this->m_iLength = countSnakeLength(this->m_snake);
+	this->isEating = false;
 	this->m_drag = DRAG;
 	printList(this->m_snake);
 
@@ -116,41 +117,17 @@ void Snake::moveSelf()
 	//Update length
 	this->m_iLength = countSnakeLength(this->m_snake);
 
-	this->m_snake = deleteNode(this->m_snake, this->m_iLength);
+	if (!this->isEating)
+		this->m_snake = deleteNode(this->m_snake, this->m_iLength);
+	else
+	{
+		printf("Snake is eating ... \n");
+		//Change flag
+		this->isEating = false;
+	}
 
 	printList(this->m_snake);
 
-	//Update length
-	this->m_iLength = countSnakeLength(this->m_snake);
-}
-
-void Snake::eatFood()
-{
-	//Update length
-	this->m_iLength = countSnakeLength(this->m_snake);
-
-	int tmp = 0;
-	switch (this->m_CurDirection)
-	{
-	case UP:
-		tmp = this->m_snake->y_pos - 10;
-		this->m_snake = insertNode(this->m_snake, 0, this->m_snake->x_pos, tmp);
-		break;
-	case DOWN:
-		tmp = this->m_snake->y_pos + 10;
-		this->m_snake = insertNode(this->m_snake, 0, this->m_snake->x_pos, tmp);
-		break;
-	case LEFT:
-		tmp = this->m_snake->x_pos - 10;
-		this->m_snake = insertNode(this->m_snake, 0, tmp, this->m_snake->y_pos);
-		break;
-	case RIGHT:
-		tmp = this->m_snake->x_pos + 10;
-		this->m_snake = insertNode(this->m_snake, 0, tmp, this->m_snake->y_pos);
-		break;
-	default:
-		break;
-	}
 	//Update length
 	this->m_iLength = countSnakeLength(this->m_snake);
 }
@@ -173,7 +150,7 @@ void Snake::changeDirection(DRIVER_DIRECTION direction)
 		}
 		else
 		{
-			if (4000000 > this->m_drag)
+			if (3000000 > this->m_drag)
 			{
 				this->m_drag += 500000;
 			}
@@ -193,7 +170,7 @@ void Snake::changeDirection(DRIVER_DIRECTION direction)
 		}
 		else
 		{
-			if (4000000 > this->m_drag)
+			if (3000000 > this->m_drag)
 			{
 				this->m_drag += 500000;
 			}
@@ -213,7 +190,7 @@ void Snake::changeDirection(DRIVER_DIRECTION direction)
 		}
 		else
 		{
-			if (4000000 > this->m_drag)
+			if (3000000 > this->m_drag)
 			{
 				this->m_drag += 500000;
 			}
@@ -233,7 +210,7 @@ void Snake::changeDirection(DRIVER_DIRECTION direction)
 		}
 		else
 		{
-			if (4000000 > this->m_drag)
+			if (3000000 > this->m_drag)
 			{
 				this->m_drag += 500000;
 			}

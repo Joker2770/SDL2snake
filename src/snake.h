@@ -64,7 +64,7 @@ extern "C"
 class Snake
 {
 	public:
-		Snake() : m_iLength(0), m_drag(DRAG)
+		Snake() : m_iLength(0), m_drag(DRAG), isEating(false)
 		{
 		}
 		~Snake()
@@ -75,7 +75,6 @@ class Snake
 	public:
 		void initSelf(int x, int y);
 		void moveSelf();
-		void eatFood();
 		void haltSelf();
 		void changeDirection(DRIVER_DIRECTION direction);
 		SDL_Rect* drawSelf();
@@ -86,6 +85,7 @@ class Snake
 		SnakeList m_snake;
 		int m_iLength;
 		int m_drag;
+		bool isEating;
 		//At most (SCREEN_WIDTH*SCREEN_HEIGHT / 100) snake nodes;
 		SDL_Rect m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100];
 		DRIVER_DIRECTION m_CurDirection;

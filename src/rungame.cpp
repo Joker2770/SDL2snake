@@ -294,7 +294,6 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 		//Render red filled quad
 		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
 		//Generate food
-		printf("Generate food!\n");
 		bool bFoodOnSnake = false;
 		do
 		{
@@ -337,9 +336,10 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 			SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0xFF, 0xFF);
 			SDL_RenderDrawRect(gRenderer, &(snake->m_sRec[i]));
 		}
+
 		if (snake->m_snake->x_pos == food->m_x_pos && snake->m_snake->y_pos == food->m_y_pos)
 		{
-			snake->eatFood();
+			snake->isEating = true;
 			food->beEaten = true;
 		}
 		if (!snake->isAlive())
@@ -517,7 +517,6 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 		//Render red filled quad
 		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
 		//Generate food
-		printf("Generate food!\n");
 		bool bFoodOnSnake = false;
 		do
 		{
@@ -601,16 +600,18 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 			SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0xFF, 0xFF);
 			SDL_RenderDrawRect(gRenderer, &(snake2->m_sRec[i]));
 		}
-
-		//Judge snake eating
+		//Judge snake2 eating
 		if (snake1->m_snake->x_pos == food->m_x_pos && snake1->m_snake->y_pos == food->m_y_pos)
 		{
-			snake1->eatFood();
+			printf("Snake1 is eating ... \n");
+			snake1->isEating = true;
 			food->beEaten = true;
 		}
+		//Judge snake1 eating
 		else if (snake2->m_snake->x_pos == food->m_x_pos && snake2->m_snake->y_pos == food->m_y_pos)
 		{
-			snake2->eatFood();
+			printf("Snake2 is eating ... \n");
+			snake2->isEating = true;
 			food->beEaten = true;
 		}
 
@@ -700,7 +701,7 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 		//Update screen
 		SDL_RenderPresent(gRenderer);
 
-		if (iCount > 4000000)
+		if (iCount > 3000000)
 		{
 			iCount = 0;
 		}
