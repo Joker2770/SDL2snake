@@ -88,13 +88,13 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 
 	p->x_pos = x;
 	p->y_pos = y;
+	p->next = NULL;
 
 	//pHead is NULL
 	if (NULL == pHead)
 	{
 		printf("NULL == pHead\n");
 		pHead = p;
-		p->next = NULL;
 		return pHead;
 	}
 
@@ -170,7 +170,7 @@ SnakeList deleteNode(SnakeList pHead, int idx)
 
 void cleanSnakeNode(SnakeList pHead)
 {
-	printf("clean...");
+	printf("clean...\n");
 	SnakeList p = pHead;
 	SnakeList q = p;
 	while (NULL != p)

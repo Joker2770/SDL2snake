@@ -49,4 +49,10 @@ typedef enum driver_direction
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
+//Button constants
+const int BUTTON_WIDTH = SCREEN_WIDTH;
+const int BUTTON_HEIGHT = SCREEN_HEIGHT / 2;
+
+const long DRAG = 2000000;
+
 #endif

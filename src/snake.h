@@ -34,6 +34,7 @@ SOFTWARE.
 
 #ifdef _WIN32
 //Windows
+#include <windows.h>
 extern "C"
 {
 #include "SDL.h"
@@ -41,6 +42,7 @@ extern "C"
 #else
 //Linux
 //Linux C++
+#include <unistd.h>
 #ifdef __cplusplus
 extern "C"
 {
@@ -62,33 +64,8 @@ extern "C"
 class Snake
 {
 	public:
-		Snake() : m_iLength(2), isEating(false), m_drag(2000000)
+		Snake() : m_iLength(0), m_drag(DRAG)
 		{
-			this->m_snake = NULL;
-			this->m_snake = insertNode(this->m_snake, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-			this->m_snake = insertNode(this->m_snake, 0, SCREEN_WIDTH / 2 + 10, SCREEN_HEIGHT / 2);
-			printList(this->m_snake);
-
-			this->m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100] = {};
-
-			switch(rand()%4)
-			{
-				case 0:
-					this->m_CurDirection = UP;
-					break;
-				case 1:
-					this->m_CurDirection = DOWN;
-					break;
-				case 2:
-					this->m_CurDirection = LEFT;
-					break;
-				case 3:
-					this->m_CurDirection = RIGHT;
-					break;
-				default:
-					this->m_CurDirection = LEFT;
-					break;
-			}
 		}
 		~Snake()
 		{
@@ -96,7 +73,10 @@ class Snake
 		}
 
 	public:
+		void initSelf(int x, int y);
 		void moveSelf();
+		void eatFood();
+		void haltSelf();
 		void changeDirection(DRIVER_DIRECTION direction);
 		SDL_Rect* drawSelf();
 		bool isEatSelf();
@@ -106,7 +86,6 @@ class Snake
 		SnakeList m_snake;
 		int m_iLength;
 		int m_drag;
-		bool isEating;
 		//At most (SCREEN_WIDTH*SCREEN_HEIGHT / 100) snake nodes;
 		SDL_Rect m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100];
 		DRIVER_DIRECTION m_CurDirection;

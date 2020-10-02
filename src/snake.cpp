@@ -31,6 +31,38 @@ SOFTWARE.
 
 #include "snake.h"
 
+void Snake::initSelf(int ix, int iy)
+{
+	this->m_snake = NULL;
+	this->m_snake = insertNode(this->m_snake, 0, ix, iy);
+	this->m_snake = insertNode(this->m_snake, 1, ix + 10, iy);
+
+	this->m_iLength = countSnakeLength(this->m_snake);
+	this->m_drag = DRAG;
+	printList(this->m_snake);
+
+	this->m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100] = {};
+
+	switch (rand() % 4)
+	{
+	case 0:
+		this->m_CurDirection = UP;
+		break;
+	case 1:
+		this->m_CurDirection = DOWN;
+		break;
+	case 2:
+		this->m_CurDirection = LEFT;
+		break;
+	case 3:
+		this->m_CurDirection = RIGHT;
+		break;
+	default:
+		this->m_CurDirection = LEFT;
+		break;
+	}
+}
+
 bool Snake::isAlive()
 {
 	if (this->m_snake->x_pos > SCREEN_WIDTH || this->m_snake->x_pos < 0 || this->m_snake->y_pos > SCREEN_HEIGHT || this->m_snake->y_pos < 0)
@@ -42,12 +74,21 @@ bool Snake::isAlive()
 	return true;
 }
 
+void Snake::haltSelf()
+{
+	printf("drag: %d\n", this->m_drag);
+#ifdef _WIN32
+	Sleep((int)((this->m_drag) / 1000));
+#else
+	usleep(this->m_drag);
+#endif
+}
+
 void Snake::moveSelf()
 {
 	//Update length
 	this->m_iLength = countSnakeLength(this->m_snake);
 
-	printf("CurDirection = %d\n", this->m_CurDirection);
 	printList(this->m_snake);
 
 	int tmp = 0;
@@ -75,15 +116,41 @@ void Snake::moveSelf()
 	//Update length
 	this->m_iLength = countSnakeLength(this->m_snake);
 
-	if (!this->isEating)
-		this->m_snake = deleteNode(this->m_snake, this->m_iLength);
-	else
-		printf("Snake eating food...\n");
-	//Change isEating flag
-	this->isEating = false;
+	this->m_snake = deleteNode(this->m_snake, this->m_iLength);
 
 	printList(this->m_snake);
 
+	//Update length
+	this->m_iLength = countSnakeLength(this->m_snake);
+}
+
+void Snake::eatFood()
+{
+	//Update length
+	this->m_iLength = countSnakeLength(this->m_snake);
+
+	int tmp = 0;
+	switch (this->m_CurDirection)
+	{
+	case UP:
+		tmp = this->m_snake->y_pos - 10;
+		this->m_snake = insertNode(this->m_snake, 0, this->m_snake->x_pos, tmp);
+		break;
+	case DOWN:
+		tmp = this->m_snake->y_pos + 10;
+		this->m_snake = insertNode(this->m_snake, 0, this->m_snake->x_pos, tmp);
+		break;
+	case LEFT:
+		tmp = this->m_snake->x_pos - 10;
+		this->m_snake = insertNode(this->m_snake, 0, tmp, this->m_snake->y_pos);
+		break;
+	case RIGHT:
+		tmp = this->m_snake->x_pos + 10;
+		this->m_snake = insertNode(this->m_snake, 0, tmp, this->m_snake->y_pos);
+		break;
+	default:
+		break;
+	}
 	//Update length
 	this->m_iLength = countSnakeLength(this->m_snake);
 }
