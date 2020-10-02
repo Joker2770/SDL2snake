@@ -141,18 +141,18 @@ void Snake::changeDirection(DRIVER_DIRECTION direction)
 		{
 			if (UP == this->m_CurDirection)
 			{
-				if (this->m_drag > 500000)
+				if (this->m_drag > MIXDRAG)
 				{
-					this->m_drag -= 500000;
+					this->m_drag -= MIXDRAG;
 				}
 			}
 			this->m_CurDirection = UP;
 		}
 		else
 		{
-			if (3000000 > this->m_drag)
+			if (MAXDRAG > this->m_drag)
 			{
-				this->m_drag += 500000;
+				this->m_drag += MIXDRAG;
 			}
 		}
 		break;
@@ -161,18 +161,18 @@ void Snake::changeDirection(DRIVER_DIRECTION direction)
 		{
 			if (DOWN == this->m_CurDirection)
 			{
-				if (this->m_drag > 500000)
+				if (this->m_drag > MIXDRAG)
 				{
-					this->m_drag -= 500000;
+					this->m_drag -= MIXDRAG;
 				}
 			}
 			this->m_CurDirection = DOWN;
 		}
 		else
 		{
-			if (3000000 > this->m_drag)
+			if (MAXDRAG > this->m_drag)
 			{
-				this->m_drag += 500000;
+				this->m_drag += MIXDRAG;
 			}
 		}
 		break;
@@ -181,18 +181,18 @@ void Snake::changeDirection(DRIVER_DIRECTION direction)
 		{
 			if (LEFT == this->m_CurDirection)
 			{
-				if (this->m_drag > 500000)
+				if (this->m_drag > MIXDRAG)
 				{
-					this->m_drag -= 500000;
+					this->m_drag -= MIXDRAG;
 				}
 			}
 			this->m_CurDirection = LEFT;
 		}
 		else
 		{
-			if (3000000 > this->m_drag)
+			if (MAXDRAG > this->m_drag)
 			{
-				this->m_drag += 500000;
+				this->m_drag += MIXDRAG;
 			}
 		}
 		break;
@@ -201,18 +201,18 @@ void Snake::changeDirection(DRIVER_DIRECTION direction)
 		{
 			if (RIGHT == this->m_CurDirection)
 			{
-				if (this->m_drag > 500000)
+				if (this->m_drag > MIXDRAG)
 				{
-					this->m_drag -= 500000;
+					this->m_drag -= MIXDRAG;
 				}
 			}
 			this->m_CurDirection = RIGHT;
 		}
 		else
 		{
-			if (3000000 > this->m_drag)
+			if (MAXDRAG > this->m_drag)
 			{
-				this->m_drag += 500000;
+				this->m_drag += MIXDRAG;
 			}
 		}
 		break;

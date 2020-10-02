@@ -54,5 +54,7 @@ const int BUTTON_WIDTH = SCREEN_WIDTH;
 const int BUTTON_HEIGHT = SCREEN_HEIGHT / 2;
 
 const long DRAG = 2000000;
+const long MAXDRAG = 3000000;
+const long MIXDRAG = 250000;
 
 #endif

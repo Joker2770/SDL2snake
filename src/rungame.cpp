@@ -93,8 +93,10 @@ int main(int argc, char *argv[])
 	srand((unsigned)time(NULL));
 
 	Snake *snake = new Snake();
+	Snake *snake1 = new Snake();
 	Snake *snake2 = new Snake();
 	Food *food = new Food();
+	Food *gfood = new Food();
 	Renderer *LRenderer = new Renderer();
 	
 	if (!init())
@@ -148,7 +150,7 @@ int main(int argc, char *argv[])
 						//Mouse click down button
 						else if (x > 0 && y > BUTTON_HEIGHT && x < SCREEN_WIDTH && y < SCREEN_HEIGHT)
 						{
-							doublePlayer(LRenderer, snake, snake2, food);
+							doublePlayer(LRenderer, snake1, snake2, gfood);
 						}
 					}
 				}
@@ -179,6 +181,12 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	if (NULL != gfood)
+	{
+		delete gfood;
+		gfood = NULL;
+	}
+
 	if (NULL != food)
 	{
 		delete food;
@@ -189,6 +197,12 @@ int main(int argc, char *argv[])
 	{
 		delete snake;
 		snake = NULL;
+	}
+
+	if (NULL != snake1)
+	{
+		delete snake1;
+		snake1 = NULL;
 	}
 
 	if (NULL != snake2)
@@ -701,18 +715,18 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 		//Update screen
 		SDL_RenderPresent(gRenderer);
 
-		if (iCount > 3000000)
+		if (iCount > MAXDRAG)
 		{
 			iCount = 0;
 		}
-		iCount += 100000;
+		iCount += MIXDRAG;
 		
 		printf("iCount: %ld\n", iCount);
 
 #ifdef _WIN32
-		Sleep(100);
+		Sleep(MIXDRAG/1000);
 #else
-		usleep(100000);
+		usleep(MIXDRAG);
 #endif
 	}
 }
