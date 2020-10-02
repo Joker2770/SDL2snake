@@ -151,6 +151,9 @@ SnakeList deleteNode(SnakeList pHead, int idx)
 	else if (idx == icount)
 	{
 		p = foundNode(pHead, icount-1);
+		tmp = p->next;
+		free(tmp);
+		tmp = NULL;
 		p->next = NULL;
 	}
 	else

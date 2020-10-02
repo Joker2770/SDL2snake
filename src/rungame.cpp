@@ -571,8 +571,8 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 		if (0 == iCount % snake1->m_drag)
 		{
 			snake1->moveSelf();
+			snake1->drawSelf();
 		}
-		snake1->drawSelf();
 		for (int i = 0; i < snake1->m_iLength; i++)
 		{
 			//Render green filled quad
@@ -588,8 +588,8 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 		if (0 == iCount % snake2->m_drag)
 		{
 			snake2->moveSelf();
+			snake2->drawSelf();
 		}
-		snake2->drawSelf();
 		for (int i = 0; i < snake2->m_iLength; i++)
 		{
 			//Render green filled quad
