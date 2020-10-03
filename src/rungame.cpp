@@ -818,7 +818,6 @@ void closeAll()
 	if (NULL != gFont)
 	{
 		TTF_CloseFont(gFont);
-		TTF_Quit();
 		gFont = NULL;
 	}
 
@@ -835,5 +834,6 @@ void closeAll()
 	}
 
 	//Quit SDL subsystems
+	TTF_Quit();
 	SDL_Quit();
 }

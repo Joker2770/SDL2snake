@@ -100,15 +100,14 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 
 	int iCount = countSnakeLength(pHead);
 	//to the first
-	if (1 > idx)
+	if (1 >= idx)
 	{
 		printf("to the first\n");
 		p->next = q;
 		pHead = p;
-		return pHead;
 	}
 	//to the end
-	else if (iCount <= idx)
+	else if (iCount < idx)
 	{
 		printf("to the end\n");
 		pe = foundNode(pHead, iCount);
@@ -116,15 +115,14 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 		{
 			pe->next = p;
 		}
-		return pHead;
 	}
 	else
 	{
-		q = foundNode(pHead, idx);
+		q = foundNode(pHead, idx-1);
 		p->next = q->next;
 		q->next = p;
-		return pHead;
 	}
+	return pHead;
 }
 
 SnakeList deleteNode(SnakeList pHead, int idx)
@@ -179,6 +177,7 @@ void cleanSnakeNode(SnakeList pHead)
 	{
 		q = p;
 		p = p->next;
+		q->next = NULL;
 		free(q);
 		q = NULL;
 	}

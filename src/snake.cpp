@@ -34,8 +34,8 @@ SOFTWARE.
 void Snake::initSelf(int ix, int iy)
 {
 	this->m_snake = NULL;
-	this->m_snake = insertNode(this->m_snake, 0, ix, iy);
-	this->m_snake = insertNode(this->m_snake, 1, ix + 10, iy);
+	this->m_snake = insertNode(this->m_snake, 1, ix, iy);
+	this->m_snake = insertNode(this->m_snake, 2, ix + 10, iy);
 
 	this->m_iLength = countSnakeLength(this->m_snake);
 	this->isEating = false;

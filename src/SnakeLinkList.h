@@ -44,7 +44,7 @@ typedef struct snake_node
 int countSnakeLength(SnakeList L);
 void printList(SnakeList L);
 void cleanSnakeNode(SnakeList L);
-//idx start with 0
+//idx is the position which will be insert, start with 1
 SnakeList insertNode(SnakeList L, int idx, int x_pos, int y_pos);
 //idx start with 1
 SnakeList foundNode(SnakeList L, int idx);
