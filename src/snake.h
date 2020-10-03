@@ -64,7 +64,7 @@ extern "C"
 class Snake
 {
 	public:
-		Snake() : m_iLength(0), m_drag(DRAG), isEating(false)
+		Snake() : m_iLength(0), m_drag(DRAG), isEating(false), m_snake(NULL), m_CurDirection(UP)
 		{
 		}
 		~Snake()

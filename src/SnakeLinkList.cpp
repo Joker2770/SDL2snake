@@ -83,8 +83,7 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 	SnakeList p = (SnakeList)malloc(sizeof(SnakeNode));
 	if (NULL == p) return pHead;
 	SnakeList q, pe;
-	q = pHead;
-	pe = pHead;
+	q = pe = pHead;
 
 	p->x_pos = x;
 	p->y_pos = y;
@@ -158,11 +157,8 @@ SnakeList deleteNode(SnakeList pHead, int idx)
 		p = foundNode(pHead, idx-1);
 		tmp = p->next;
 		p->next = tmp->next;
-		if (NULL != tmp)
-		{
-			free(tmp);
-			tmp = NULL;
-		}
+		free(tmp);
+		tmp = NULL;
 	}
 
 	return pHead;

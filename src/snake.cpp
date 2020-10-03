@@ -42,7 +42,7 @@ void Snake::initSelf(int ix, int iy)
 	this->m_drag = DRAG;
 	printList(this->m_snake);
 
-	this->m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100] = {};
+	memset(this->m_sRec, 0, sizeof(this->m_sRec));
 
 	switch (rand() % 4)
 	{
