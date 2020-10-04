@@ -64,7 +64,7 @@ void Snake::initSelf(int ix, int iy)
 	}
 }
 
-bool Snake::isAlive()
+bool Snake::isAlive(void)
 {
 	if (this->m_snake->x_pos > SCREEN_WIDTH || this->m_snake->x_pos < 0 || this->m_snake->y_pos > SCREEN_HEIGHT || this->m_snake->y_pos < 0)
 		return false;
@@ -75,7 +75,7 @@ bool Snake::isAlive()
 	return true;
 }
 
-void Snake::haltSelf()
+void Snake::haltSelf(void)
 {
 	printf("drag: %d\n", this->m_drag);
 #ifdef _WIN32
@@ -85,7 +85,7 @@ void Snake::haltSelf()
 #endif
 }
 
-void Snake::moveSelf()
+void Snake::moveSelf(void)
 {
 	//Update length
 	this->m_iLength = countSnakeLength(this->m_snake);
@@ -97,19 +97,19 @@ void Snake::moveSelf()
 	{
 	case UP:
 		tmp = this->m_snake->y_pos - 10;
-		this->m_snake = insertNode(this->m_snake, 0, this->m_snake->x_pos, tmp);
+		this->m_snake = insertNode(this->m_snake, 1, this->m_snake->x_pos, tmp);
 		break;
 	case DOWN:
 		tmp = this->m_snake->y_pos + 10;
-		this->m_snake = insertNode(this->m_snake, 0, this->m_snake->x_pos, tmp);
+		this->m_snake = insertNode(this->m_snake, 1, this->m_snake->x_pos, tmp);
 		break;
 	case LEFT:
 		tmp = this->m_snake->x_pos - 10;
-		this->m_snake = insertNode(this->m_snake, 0, tmp, this->m_snake->y_pos);
+		this->m_snake = insertNode(this->m_snake, 1, tmp, this->m_snake->y_pos);
 		break;
 	case RIGHT:
 		tmp = this->m_snake->x_pos + 10;
-		this->m_snake = insertNode(this->m_snake, 0, tmp, this->m_snake->y_pos);
+		this->m_snake = insertNode(this->m_snake, 1, tmp, this->m_snake->y_pos);
 		break;
 	default:
 		break;
@@ -221,7 +221,7 @@ void Snake::changeDirection(DRIVER_DIRECTION direction)
 	}
 }
 
-bool Snake::isEatSelf()
+bool Snake::isEatSelf(void)
 {
 	SnakeList pS = this->m_snake->next;
 	while (NULL != pS)
@@ -233,13 +233,23 @@ bool Snake::isEatSelf()
 	return false;
 }
 
-SDL_Rect* Snake::drawSelf()
+SDL_Rect* Snake::drawSelf(void)
 {
 	SnakeList pSnake = this->m_snake;
 	for (int i = 0; pSnake != NULL; i++)
 	{
-		this->m_sRec[i] = { pSnake->x_pos, pSnake->y_pos, 10, 10 };
+		this->m_sRec[i] = { pSnake->x_pos, pSnake->y_pos, GRID_UNION_WIDTH, GRID_UNION_HEIGHT };
 		pSnake = pSnake->next;
 	}
 	return this->m_sRec;
+}
+
+int Snake::getLength(void)
+{
+	return this->m_iLength;
+}
+
+int Snake::getDrag(void)
+{
+	return this->m_drag;
 }

@@ -57,4 +57,7 @@ const long DRAG = 2000000;
 const long MAXDRAG = 3000000;
 const long MIXDRAG = 250000;
 
+const int GRID_UNION_WIDTH = 10;
+const int GRID_UNION_HEIGHT = 10;
+
 #endif

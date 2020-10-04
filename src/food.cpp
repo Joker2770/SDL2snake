@@ -39,8 +39,8 @@ SDL_Rect* Food::drawSelf()
 	this->m_sRec[0] = {
 		this->m_x_pos,
 		this->m_y_pos,
-		10,
-		10
+		GRID_UNION_WIDTH,
+		GRID_UNION_HEIGHT
 	};
 
 	return this->m_sRec;

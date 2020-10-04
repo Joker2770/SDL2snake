@@ -339,7 +339,8 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 
 		snake->moveSelf();
 		snake->drawSelf();
-		for (int i = 0; i < snake->m_iLength; i++)
+		int iSnakeLength = snake->getLength();
+		for (int i = 0; i < iSnakeLength; i++)
 		{
 			//Render green filled quad
 			SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF);
@@ -356,7 +357,9 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 			snake->isEating = true;
 			food->beEaten = true;
 		}
-		if (!snake->isAlive())
+
+		int ilimit = SCREEN_HEIGHT * SCREEN_WIDTH / (GRID_UNION_HEIGHT*GRID_UNION_WIDTH);
+		if (iSnakeLength > ilimit - 5 || !snake->isAlive())
 		{
 			//Initialize renderer color
 			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -365,7 +368,7 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 			//Render text
 			SDL_Color textColor = { 0, 0, 0, 0 };
 			char sText[128] = "\0";
-			snprintf(sText, sizeof(sText), "Game Over!You get %d.", snake->m_iLength - 2);
+			snprintf(sText, sizeof(sText), "Game Over!You get %d.", iSnakeLength - 2);
 			printf("%s\n", sText);
 			if (LRenderer->loadFromRenderedText(gRenderer, gFont, sText, textColor))
 			{
@@ -581,12 +584,13 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 			SDL_RenderFillRect(gRenderer, &(food->m_sRec[0]));
 
 		//Draw snake1
-		if (0 == iCount % snake1->m_drag)
+		if (0 == iCount % snake1->getDrag())
 		{
 			snake1->moveSelf();
 			snake1->drawSelf();
 		}
-		for (int i = 0; i < snake1->m_iLength; i++)
+		int iSnakeLength1 = snake1->getLength();
+		for (int i = 0; i < iSnakeLength1; i++)
 		{
 			//Render green filled quad
 			SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF);
@@ -598,12 +602,13 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 			SDL_RenderDrawRect(gRenderer, &(snake1->m_sRec[i]));
 		}
 		//Draw snake2
-		if (0 == iCount % snake2->m_drag)
+		if (0 == iCount % snake2->getDrag())
 		{
 			snake2->moveSelf();
 			snake2->drawSelf();
 		}
-		for (int i = 0; i < snake2->m_iLength; i++)
+		int iSnakeLength2 = snake2->getLength();
+		for (int i = 0; i < iSnakeLength2; i++)
 		{
 			//Render green filled quad
 			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0x00, 0xFF);
@@ -655,7 +660,8 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 			}
 		}
 
-		if (!snake1->isAlive() || !snake2->isAlive() || snake1BeCrash || snake2BeCrash)
+		int ilimit = SCREEN_HEIGHT * SCREEN_WIDTH / (GRID_UNION_HEIGHT*GRID_UNION_WIDTH);
+		if (iSnakeLength1 + iSnakeLength2 > ilimit - 5 || !snake1->isAlive() || !snake2->isAlive() || snake1BeCrash || snake2BeCrash)
 		{
 			//Initialize renderer color
 			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -664,12 +670,12 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 			//Render text
 			SDL_Color textColor = { 0, 0, 0, 0 };
 			char sText[128] = "\0";
-			snprintf(sText, sizeof(sText), "Game Over! Snake1 get %d, Snake2 get %d. ", snake1->m_iLength - 2, snake2->m_iLength - 2);
+			snprintf(sText, sizeof(sText), "Game Over! Snake1 get %d, Snake2 get %d. ", iSnakeLength1 - 2, iSnakeLength2 - 2);
 			printf("%s\n", sText);
-			if (snake1->m_iLength != snake2->m_iLength)
+			if (iSnakeLength1 != iSnakeLength2)
 			{
 				//Render background
-				snake1->m_iLength > snake2->m_iLength ?
+				iSnakeLength1 > iSnakeLength2 ?
 					SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF) :
 					SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0x00, 0xFF);
 				SDL_RenderClear(gRenderer);
@@ -751,7 +757,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("SDL2snake v20.20.10-stable", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("SDL2snake v20.20.10.04-beta", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());

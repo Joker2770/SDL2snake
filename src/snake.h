@@ -74,21 +74,25 @@ class Snake
 
 	public:
 		void initSelf(int x, int y);
-		void moveSelf();
-		void haltSelf();
+		void moveSelf(void);
+		void haltSelf(void);
 		void changeDirection(DRIVER_DIRECTION direction);
-		SDL_Rect* drawSelf();
-		bool isEatSelf();
-		bool isAlive();
+		SDL_Rect* drawSelf(void);
+		bool isEatSelf(void);
+		bool isAlive(void);
+		int getLength(void);
+		int getDrag(void);
 
 	public:
 		SnakeList m_snake;
+		bool isEating;
+		//At most (SCREEN_WIDTH*SCREEN_HEIGHT / (GRID_UNION_HEIGHT*GRID_UNION_WIDTH)) snake nodes;
+		SDL_Rect m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / (GRID_UNION_HEIGHT*GRID_UNION_WIDTH)];
+		DRIVER_DIRECTION m_CurDirection;
+
+	private:
 		int m_iLength;
 		int m_drag;
-		bool isEating;
-		//At most (SCREEN_WIDTH*SCREEN_HEIGHT / 100) snake nodes;
-		SDL_Rect m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / 100];
-		DRIVER_DIRECTION m_CurDirection;
 
 };
 
