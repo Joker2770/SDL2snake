@@ -135,6 +135,12 @@ int main(int argc, char *argv[])
 						case SDLK_ESCAPE:
 							BeQuit = true;
 							break;
+						case SDLK_1:
+							singlePlayer(LRenderer, snake, food);
+							break;
+						case SDLK_2:
+							doublePlayer(LRenderer, snake1, snake2, gfood);
+							break;
 						default:
 							break;
 						}
