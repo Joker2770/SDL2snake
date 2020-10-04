@@ -1,10 +1,18 @@
 
   # After registering a name on build.snapcraft.io, commit an uncommented line:
   name: sdl2snake
-  version: '20.20.10.04' # just for humans, typically '1.2+git' or '1.3.2'
+  version: '20.20.10' # just for humans, typically '1.2+git' or '1.3.2'
   summary: a simple snake game writen with C++, and render by SDL2. # 79 char long summary
   description: |
-    More detail please view: < https://github.com/Joker2770/SDL2snake >.
+    **available key control for pure keyboard:**
+    * Esc - Quit current scenes.
+    * Q - Same as above.
+    * 1 - Into single player mode. (Mouse click will  be work as well)
+    * 2 - Into double player mode. (Mouse click will  be work as well)
+    * W, S, A, D - For double player mode, for player1 control.
+    * up, down, left, right - For single player mode or player2 of double player mode.
+
+    _More detail please view code: < https://github.com/Joker2770/SDL2snake >. _
 
   grade: stable # must be 'stable' to release into candidate/stable channels
   confinement: strict # use 'strict' once you have the right plugs and slots
