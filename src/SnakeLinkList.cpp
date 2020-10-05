@@ -56,7 +56,7 @@ void printList(SnakeList pHead)
 	for (int i = 0; i < iCount; i++)
 	{
 		pF = foundNode(pHead, i+1);
-		printf("(%d, %d)	", pF->x_pos, pF->y_pos);
+		printf("(%d, %d) ", pF->x_pos, pF->y_pos);
 	}
 	printf("\n");
 }
