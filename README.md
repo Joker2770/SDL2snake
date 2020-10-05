@@ -8,7 +8,7 @@ Required:
 * gcc (>= 7.4.0 recommended)
 * libsdl2-dev,libsdl2-ttf-dev (Linux), sdl2.nuget,sdl2_ttf.nuget (Windows)
 
-## Build on Linux
+## Build on Ubuntu(Linux)
 ~~~
 sudo apt install libsdl2-dev libsdl2-ttf-dev
 git clone https://github.com/Joker2770/SDL2snake.git
@@ -25,7 +25,7 @@ SDL2snake
 ## Build on windows
 ~~~
 git clone https://github.com/Joker2770/SDL2snake.git
-cd SDL2snake
+cd SDL2snake/msvc/
 ~~~
-build with cmake-gui.
+Then double click 'SDL2snake.sln', build with Visual Studio.
 
