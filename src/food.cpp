@@ -31,7 +31,7 @@ SOFTWARE.
 
 #include "food.h"
 
-SDL_Rect* Food::drawSelf()
+SDL_Rect* Food::drawSelf(void)
 {
 	this->m_x_pos = (rand()%SCREEN_WIDTH)/10*10;
 	this->m_y_pos = (rand()%SCREEN_HEIGHT)/10*10;

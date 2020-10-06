@@ -79,7 +79,7 @@ class Food
 		}
 
 	public:
-		SDL_Rect* drawSelf();
+		SDL_Rect* drawSelf(void);
 
 	public:
 		int m_x_pos;
