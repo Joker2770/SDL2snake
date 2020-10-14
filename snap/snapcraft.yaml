@@ -23,7 +23,7 @@
   apps:
     sdl2snake:
       command: usr/local/bin/SDL2snake
-      desktop: SDL2snake.desktop
+      desktop: sdl2snake.desktop
       plugs:
         - desktop
         - desktop-legacy

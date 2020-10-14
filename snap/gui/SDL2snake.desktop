@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=SDL2snake
-Exec=sdl2snake
-Type=Application
-Icon=${SNAP}/icon.png
