@@ -14,7 +14,7 @@
 
     _More detail please view code: < https://github.com/Joker2770/SDL2snake >. _
 
-  icon: gui/icon.png
+  # icon: snap/gui/icon.png
 
   grade: stable # must be 'stable' to release into candidate/stable channels
   confinement: strict # use 'strict' once you have the right plugs and slots
@@ -22,8 +22,8 @@
   
   apps:
     sdl2snake:
-      command: $SNAP/usr/local/bin/SDL2snake
-      desktop: usr/share/applications/SDL2snake.desktop
+      command: usr/local/bin/SDL2snake
+      desktop: SDL2snake.desktop
       plugs:
         - desktop
         - desktop-legacy
@@ -74,3 +74,7 @@
         # - libglib2.0-dev
       # stage-packages:
         # - libglib2.0-bin
+
+    env:
+      source: snap/gui
+      plugin:dump
