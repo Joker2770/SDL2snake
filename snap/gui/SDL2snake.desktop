@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=SDL2snake
+Exec=sdl2snake.sdl2snake
+Icon=${SNAP}/meta/gui/icon.png

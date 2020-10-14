@@ -400,11 +400,11 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 				SDL_Color textColor = { 0, 0, 0, 0 };
 				char sText[128] = "\0";
 				snprintf(sText, sizeof(sText), "Game Over!You get %d.", iSnakeLength - 2);
-				printf("%s\n", sText);
+				//printf("%s\n", sText);
 				if (LRenderer->loadFromRenderedText(gRenderer, gFont, sText, textColor))
 				{
 					LRenderer->render(gRenderer, (SCREEN_WIDTH - LRenderer->getWidth()) / 2, (SCREEN_HEIGHT - LRenderer->getHeight()) / 2);
-					printf("LRenderer: w = %d, h = %d\n", LRenderer->getWidth(), LRenderer->getHeight());
+					//printf("LRenderer: w = %d, h = %d\n", LRenderer->getWidth(), LRenderer->getHeight());
 				}
 
 				//Update screen
@@ -703,7 +703,7 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 				SDL_Color textColor = { 0, 0, 0, 0 };
 				char sText[128] = "\0";
 				snprintf(sText, sizeof(sText), "Game Over! Snake1 get %d, Snake2 get %d. ", iSnakeLength1 - 2, iSnakeLength2 - 2);
-				printf("%s\n", sText);
+				//printf("%s\n", sText);
 				if (iSnakeLength1 != iSnakeLength2)
 				{
 					//Render background
@@ -715,7 +715,7 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 				if (LRenderer->loadFromRenderedText(gRenderer, gFont, sText, textColor))
 				{
 					LRenderer->render(gRenderer, (SCREEN_WIDTH - LRenderer->getWidth()) / 2, (SCREEN_HEIGHT - LRenderer->getHeight()) / 2);
-					printf("LRenderer: w = %d, h = %d\n", LRenderer->getWidth(), LRenderer->getHeight());
+					//printf("LRenderer: w = %d, h = %d\n", LRenderer->getWidth(), LRenderer->getHeight());
 				}
 
 				//Update screen
@@ -764,7 +764,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("SDL2snake v20.20.10.06-beta", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("SDL2snake v20.20.10.14-beta", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
