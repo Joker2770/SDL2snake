@@ -75,6 +75,6 @@
       # stage-packages:
         # - libglib2.0-bin
 
-    env:
+    desktop:
       source: snap/gui
-      plugin:dump
+      plugin: dump
