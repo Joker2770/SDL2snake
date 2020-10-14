@@ -23,10 +23,10 @@
   apps:
     sdl2snake:
       command: usr/local/bin/SDL2snake
-      desktop: SDL2snake.desktop
-      plugs:
-        - desktop
-        - desktop-legacy
+      # desktop: SDL2snake.desktop
+      # plugs:
+        # - desktop
+        # - desktop-legacy
         # - opengl
         
   layout:
@@ -75,6 +75,6 @@
       # stage-packages:
         # - libglib2.0-bin
 
-    desktop:
-      source: snap/gui
-      plugin: dump
+    # desktop-file:
+      # source: snap/gui
+      # plugin: dump
