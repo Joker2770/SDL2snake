@@ -230,7 +230,7 @@ int main(int argc, char *argv[])
 
 void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 {
-	snake->initSelf((SCREEN_WIDTH / 2) / 10 * 10, (SCREEN_HEIGHT / 2) / 10 * 10);
+	snake->initSelf((SCREEN_WIDTH / 2) / GRID_UNION_WIDTH * GRID_UNION_WIDTH, (SCREEN_HEIGHT / 2) / GRID_UNION_HEIGHT * GRID_UNION_HEIGHT);
 	food->drawSelf();
 	//Render text
 	SDL_Color textColor = { 0, 0, 0, 0 };
@@ -423,8 +423,8 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 
 void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 {
-	snake1->initSelf((SCREEN_WIDTH / 2) / 10 * 10, (SCREEN_HEIGHT / 4) / 10 * 10);
-	snake2->initSelf((SCREEN_WIDTH / 2) / 10 * 10, (SCREEN_HEIGHT * 3 / 4) / 10 * 10);
+	snake1->initSelf((SCREEN_WIDTH / 2) / GRID_UNION_WIDTH * GRID_UNION_WIDTH, (SCREEN_HEIGHT / 4) / GRID_UNION_HEIGHT * GRID_UNION_HEIGHT);
+	snake2->initSelf((SCREEN_WIDTH / 2) / GRID_UNION_WIDTH * GRID_UNION_WIDTH, (SCREEN_HEIGHT * 3 / 4) / GRID_UNION_HEIGHT * GRID_UNION_HEIGHT);
 	food->drawSelf();
 	//Render text
 	SDL_Color textColor = { 0, 0, 0, 0 };

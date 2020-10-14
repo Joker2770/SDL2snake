@@ -33,8 +33,8 @@ SOFTWARE.
 
 SDL_Rect* Food::drawSelf(void)
 {
-	this->m_x_pos = (rand()%SCREEN_WIDTH)/10*10;
-	this->m_y_pos = (rand()%SCREEN_HEIGHT)/10*10;
+	this->m_x_pos = (rand()%SCREEN_WIDTH)/ GRID_UNION_WIDTH * GRID_UNION_WIDTH;
+	this->m_y_pos = (rand()%SCREEN_HEIGHT)/ GRID_UNION_HEIGHT * GRID_UNION_HEIGHT;
 
 	this->m_sRec[0] = {
 		this->m_x_pos,

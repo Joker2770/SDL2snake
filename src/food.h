@@ -60,7 +60,7 @@ extern "C"
 class Food
 {
 	public:
-		Food():m_x_pos((rand()%SCREEN_WIDTH)/10*10), m_y_pos((rand()%SCREEN_HEIGHT)/10*10)
+		Food():m_x_pos((rand()%SCREEN_WIDTH)/ GRID_UNION_WIDTH * GRID_UNION_WIDTH), m_y_pos((rand()%SCREEN_HEIGHT)/ GRID_UNION_HEIGHT * GRID_UNION_HEIGHT)
 		{
 			this->m_sRec[0] = {};
 			this->m_sRec[0] = {

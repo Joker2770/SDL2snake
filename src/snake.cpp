@@ -35,7 +35,7 @@ void Snake::initSelf(int ix, int iy)
 {
 	this->m_snake = NULL;
 	this->m_snake = insertNode(this->m_snake, 1, ix, iy);
-	this->m_snake = insertNode(this->m_snake, 2, ix + 10, iy);
+	this->m_snake = insertNode(this->m_snake, 2, ix + GRID_UNION_WIDTH, iy);
 
 	this->m_iLength = countSnakeLength(this->m_snake);
 	this->isEating = false;
@@ -96,19 +96,19 @@ void Snake::moveSelf(void)
 	switch (this->m_CurDirection)
 	{
 	case UP:
-		tmp = this->m_snake->y_pos - 10;
+		tmp = this->m_snake->y_pos - GRID_UNION_HEIGHT;
 		this->m_snake = insertNode(this->m_snake, 1, this->m_snake->x_pos, tmp);
 		break;
 	case DOWN:
-		tmp = this->m_snake->y_pos + 10;
+		tmp = this->m_snake->y_pos + GRID_UNION_HEIGHT;
 		this->m_snake = insertNode(this->m_snake, 1, this->m_snake->x_pos, tmp);
 		break;
 	case LEFT:
-		tmp = this->m_snake->x_pos - 10;
+		tmp = this->m_snake->x_pos - GRID_UNION_WIDTH;
 		this->m_snake = insertNode(this->m_snake, 1, tmp, this->m_snake->y_pos);
 		break;
 	case RIGHT:
-		tmp = this->m_snake->x_pos + 10;
+		tmp = this->m_snake->x_pos + GRID_UNION_WIDTH;
 		this->m_snake = insertNode(this->m_snake, 1, tmp, this->m_snake->y_pos);
 		break;
 	default:
