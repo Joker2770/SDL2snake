@@ -231,6 +231,7 @@ int main(int argc, char *argv[])
 void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 {
 	snake->initSelf((SCREEN_WIDTH / 2) / 10 * 10, (SCREEN_HEIGHT / 2) / 10 * 10);
+	food->drawSelf();
 	//Render text
 	SDL_Color textColor = { 0, 0, 0, 0 };
 	if (LRenderer->loadFromRenderedText(gRenderer, gFont, "Ready...", textColor))
@@ -424,6 +425,7 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 {
 	snake1->initSelf((SCREEN_WIDTH / 2) / 10 * 10, (SCREEN_HEIGHT / 4) / 10 * 10);
 	snake2->initSelf((SCREEN_WIDTH / 2) / 10 * 10, (SCREEN_HEIGHT * 3 / 4) / 10 * 10);
+	food->drawSelf();
 	//Render text
 	SDL_Color textColor = { 0, 0, 0, 0 };
 	SDL_RenderClear(gRenderer);
