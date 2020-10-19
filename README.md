@@ -22,7 +22,7 @@ sudo make install
 SDL2snake
 ~~~
 
-## Build on windows
+## Build on Windows
 ~~~
 git clone https://github.com/Joker2770/SDL2snake.git
 cd SDL2snake/msvc/
