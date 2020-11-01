@@ -127,7 +127,6 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 SnakeList deleteNode(SnakeList pHead, int idx)
 {
 	SnakeList p = pHead;
-	SnakeList q = p;
 	SnakeList tmp = p;
 
 	if (NULL == p)
