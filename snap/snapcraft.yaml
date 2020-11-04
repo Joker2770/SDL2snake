@@ -24,9 +24,11 @@
     sdl2snake:
       command: usr/local/bin/SDL2snake
       # desktop: sdl2snake.desktop
-      # plugs:
-        # - desktop
-        # - desktop-legacy
+      plugs:
+        - desktop
+        - desktop-legacy
+        - wayland
+        - unity7
         # - opengl
         
   layout:
