@@ -17,6 +17,7 @@ mkdir build
 cd build
 cmake ..
 make
+cp ../res/lazy.ttf ./
 ./SDL2snake
 sudo make install
 SDL2snake
