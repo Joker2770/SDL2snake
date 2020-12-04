@@ -343,3 +343,5 @@ OpenCover/
 
 [Bb]uild*/
 [Oo]ut/
+.vs/
+.vscode/
