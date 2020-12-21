@@ -364,8 +364,7 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 			food->beEaten = true;
 		}
 
-		int ilimit = SCREEN_HEIGHT * SCREEN_WIDTH / (GRID_UNION_HEIGHT*GRID_UNION_WIDTH);
-		if (iSnakeLength > ilimit - 5 || !snake->isAlive())
+		if (iSnakeLength > LEN_LIMIT - 5 || !snake->isAlive())
 		{
 			SDL_Event e;
 			while (!quit)
@@ -668,9 +667,13 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 			}
 		}
 
-		int ilimit = SCREEN_HEIGHT * SCREEN_WIDTH / (GRID_UNION_HEIGHT*GRID_UNION_WIDTH);
-		if (iSnakeLength1 + iSnakeLength2 > ilimit - 5 || !snake1->isAlive() || !snake2->isAlive() || snake1BeCrash || snake2BeCrash)
+		if (iSnakeLength1 + iSnakeLength2 > LEN_LIMIT - 5 || !snake1->isAlive() || !snake2->isAlive() || snake1BeCrash || snake2BeCrash)
 		{
+			if (!snake1->isAlive() || snake1BeCrash)
+				iSnakeLength1 = 0;
+			if (!snake2->isAlive() || snake2BeCrash)
+				iSnakeLength2 = 0;
+				
 			SDL_Event e;
 			while (!quit)
 			{
@@ -766,7 +769,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("SDL2snake v20.20.11-stable", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("SDL2snake v20.20.12.21-beta", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
