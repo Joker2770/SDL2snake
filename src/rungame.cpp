@@ -182,8 +182,8 @@ int main(int argc, char *argv[])
 				}
 
 				SDL_RenderPresent(gRenderer);
-				SDL_RenderClear(gRenderer);
 			}
+			SDL_RenderClear(gRenderer);
 		}
 	}
 
@@ -242,7 +242,7 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 		LRenderer->render(gRenderer, (SCREEN_WIDTH - LRenderer->getWidth()) / 2, (SCREEN_HEIGHT - LRenderer->getHeight()) / 2);
 		printf("LRenderer: w = %d, h = %d\n", LRenderer->getWidth(), LRenderer->getHeight());
 		SDL_RenderPresent(gRenderer);
-		SDL_RenderClear(gRenderer);
+		//SDL_RenderClear(gRenderer);
 
 #ifdef _WIN32
 		Sleep(3000);
@@ -409,15 +409,15 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);
-				SDL_RenderClear(gRenderer);
 			}
+			SDL_RenderClear(gRenderer);
 		}
 
 		//Update screen
 		SDL_RenderPresent(gRenderer);
-		SDL_RenderClear(gRenderer);
 		snake->haltSelf();
 	}
+	SDL_RenderClear(gRenderer);
 }
 
 void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
@@ -446,7 +446,7 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 	}
 
 	SDL_RenderPresent(gRenderer);
-	SDL_RenderClear(gRenderer);
+	//SDL_RenderClear(gRenderer);
 
 #ifdef _WIN32
 		Sleep(3000);
@@ -725,28 +725,28 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 
 				//Update screen
 				SDL_RenderPresent(gRenderer);
-				SDL_RenderClear(gRenderer);
 			}
+			SDL_RenderClear(gRenderer);
 		}
 
 		//Update screen
 		SDL_RenderPresent(gRenderer);
-		SDL_RenderClear(gRenderer);
 
 		if (iCount > MAXDRAG)
 		{
 			iCount = 0;
 		}
 		iCount += MIXDRAG;
-		
+
 		printf("iCount: %ld\n", iCount);
 
 #ifdef _WIN32
-		Sleep(MIXDRAG/1000);
+		Sleep(MIXDRAG / 1000);
 #else
 		usleep(MIXDRAG);
 #endif
 	}
+	SDL_RenderClear(gRenderer);
 }
 
 bool init()
@@ -766,6 +766,7 @@ bool init()
 		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 		{
 			printf("Warning: Linear texture filtering not enabled!");
+			success = false;
 		}
 
 		//Create window
@@ -793,6 +794,7 @@ bool init()
 				if (TTF_Init() == -1)
 				{
 					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+					success = false;
 				}
 			}
 

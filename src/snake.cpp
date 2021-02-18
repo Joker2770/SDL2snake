@@ -66,7 +66,7 @@ void Snake::initSelf(int ix, int iy)
 
 bool Snake::isAlive(void)
 {
-	if (this->m_snake->x_pos > SCREEN_WIDTH || this->m_snake->x_pos < 0 || this->m_snake->y_pos > SCREEN_HEIGHT || this->m_snake->y_pos < 0)
+	if (this->m_snake->x_pos >= SCREEN_WIDTH || this->m_snake->x_pos < 0 || this->m_snake->y_pos >= SCREEN_HEIGHT || this->m_snake->y_pos < 0)
 		return false;
 
 	if (this->isEatSelf())
