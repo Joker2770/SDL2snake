@@ -32,7 +32,7 @@ SOFTWARE.
 #ifndef __RENDER_H__
 #define __RENDER_H__
 
-#ifdef _WIN32
+#ifdef _MSC_VER
 //Windows
 extern "C"
 {

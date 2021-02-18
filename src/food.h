@@ -32,7 +32,7 @@ SOFTWARE.
 #ifndef __FOOD_H__
 #define __FOOD_H__
 
-#ifdef _WIN32
+#ifdef _MSC_VER
 //Windows
 extern "C"
 {

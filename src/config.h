@@ -32,7 +32,7 @@ SOFTWARE.
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
-#ifdef _WIN32
+#ifdef _MSC_VER
 #define TTF_PATH "./lazy.ttf"
 #else
 #define TTF_PATH "/usr/local/bin/lazy.ttf"
