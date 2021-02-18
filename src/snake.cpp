@@ -4,7 +4,7 @@
     > Mail: 18608842770@163.com 
     > Created Time: Sun Sep 13 11:58:56 2020
  ************************************************************************/
- 
+
 /*
 MIT License
 
@@ -226,19 +226,20 @@ bool Snake::isEatSelf(void)
 	SnakeList pS = this->m_snake->next;
 	while (NULL != pS)
 	{
-		if (pS->x_pos == this->m_snake->x_pos && pS->y_pos == this->m_snake->y_pos)	return true;
-		pS = pS->next;	
+		if (pS->x_pos == this->m_snake->x_pos && pS->y_pos == this->m_snake->y_pos)
+			return true;
+		pS = pS->next;
 	}
 
 	return false;
 }
 
-SDL_Rect* Snake::drawSelf(void)
+SDL_Rect *Snake::drawSelf(void)
 {
 	SnakeList pSnake = this->m_snake;
 	for (int i = 0; pSnake != NULL; i++)
 	{
-		this->m_sRec[i] = { pSnake->x_pos, pSnake->y_pos, GRID_UNION_WIDTH, GRID_UNION_HEIGHT };
+		this->m_sRec[i] = {pSnake->x_pos, pSnake->y_pos, GRID_UNION_WIDTH, GRID_UNION_HEIGHT};
 		pSnake = pSnake->next;
 	}
 	return this->m_sRec;

@@ -5,7 +5,7 @@
     > Created Time: Sat Sep 19 14:44:39 2020
  ************************************************************************/
 
- /*
+/*
  MIT License
 
  Copyright (c) 2020 Joker2770
@@ -55,7 +55,7 @@ void printList(SnakeList pHead)
 	printf("PosList: ");
 	for (int i = 0; i < iCount; i++)
 	{
-		pF = foundNode(pHead, i+1);
+		pF = foundNode(pHead, i + 1);
 		printf("(%d, %d) ", pF->x_pos, pF->y_pos);
 	}
 	printf("\n");
@@ -67,7 +67,7 @@ SnakeList foundNode(SnakeList pHead, int idx)
 		return NULL;
 
 	SnakeList pFound = pHead;
-	for(int i = 1; NULL != pFound; i++)
+	for (int i = 1; NULL != pFound; i++)
 	{
 		if (idx == i)
 		{
@@ -81,7 +81,8 @@ SnakeList foundNode(SnakeList pHead, int idx)
 SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 {
 	SnakeList p = (SnakeList)malloc(sizeof(SnakeNode));
-	if (NULL == p) return pHead;
+	if (NULL == p)
+		return pHead;
 	SnakeList q, pe;
 	q = pe = pHead;
 
@@ -117,7 +118,7 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 	}
 	else
 	{
-		q = foundNode(pHead, idx-1);
+		q = foundNode(pHead, idx - 1);
 		p->next = q->next;
 		q->next = p;
 	}
@@ -145,7 +146,7 @@ SnakeList deleteNode(SnakeList pHead, int idx)
 	}
 	else if (idx == icount)
 	{
-		p = foundNode(pHead, icount-1);
+		p = foundNode(pHead, icount - 1);
 		tmp = p->next;
 		free(tmp);
 		tmp = NULL;
@@ -153,7 +154,7 @@ SnakeList deleteNode(SnakeList pHead, int idx)
 	}
 	else
 	{
-		p = foundNode(pHead, idx-1);
+		p = foundNode(pHead, idx - 1);
 		tmp = p->next;
 		p->next = tmp->next;
 		free(tmp);
@@ -177,4 +178,3 @@ void cleanSnakeNode(SnakeList pHead)
 		q = NULL;
 	}
 }
-

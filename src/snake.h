@@ -4,7 +4,7 @@
     > Mail: 18608842770@163.com 
     > Created Time: Tue Sep  8 09:03:57 2020
  ************************************************************************/
- 
+
 /*
 MIT License
 
@@ -47,8 +47,8 @@ extern "C"
 extern "C"
 {
 #endif
-	
-#include<SDL2/SDL.h>
+
+#include <SDL2/SDL.h>
 
 //Linux C++
 #ifdef __cplusplus
@@ -63,37 +63,36 @@ extern "C"
 
 class Snake
 {
-	public:
-		Snake() : m_iLength(0), m_drag(DRAG), isEating(false), m_snake(NULL), m_CurDirection(UP)
-		{
-		}
-		~Snake()
-		{
-			cleanSnakeNode(this->m_snake);
-		}
+public:
+	Snake() : m_iLength(0), m_drag(DRAG), isEating(false), m_snake(NULL), m_CurDirection(UP)
+	{
+	}
+	~Snake()
+	{
+		cleanSnakeNode(this->m_snake);
+	}
 
-	public:
-		void initSelf(int x, int y);
-		void moveSelf(void);
-		void haltSelf(void);
-		void changeDirection(DRIVER_DIRECTION direction);
-		SDL_Rect* drawSelf(void);
-		bool isEatSelf(void);
-		bool isAlive(void);
-		int getLength(void);
-		int getDrag(void);
+public:
+	void initSelf(int x, int y);
+	void moveSelf(void);
+	void haltSelf(void);
+	void changeDirection(DRIVER_DIRECTION direction);
+	SDL_Rect *drawSelf(void);
+	bool isEatSelf(void);
+	bool isAlive(void);
+	int getLength(void);
+	int getDrag(void);
 
-	public:
-		SnakeList m_snake;
-		bool isEating;
-		//At most (SCREEN_WIDTH*SCREEN_HEIGHT / (GRID_UNION_HEIGHT*GRID_UNION_WIDTH)) snake nodes;
-		SDL_Rect m_sRec[SCREEN_WIDTH*SCREEN_HEIGHT / (GRID_UNION_HEIGHT*GRID_UNION_WIDTH)];
-		DRIVER_DIRECTION m_CurDirection;
+public:
+	SnakeList m_snake;
+	bool isEating;
+	//At most (SCREEN_WIDTH*SCREEN_HEIGHT / (GRID_UNION_HEIGHT*GRID_UNION_WIDTH)) snake nodes;
+	SDL_Rect m_sRec[SCREEN_WIDTH * SCREEN_HEIGHT / (GRID_UNION_HEIGHT * GRID_UNION_WIDTH)];
+	DRIVER_DIRECTION m_CurDirection;
 
-	private:
-		int m_iLength;
-		int m_drag;
-
+private:
+	int m_iLength;
+	int m_drag;
 };
 
 #endif

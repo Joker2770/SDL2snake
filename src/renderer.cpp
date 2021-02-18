@@ -31,13 +31,13 @@ SOFTWARE.
 
 #include "renderer.h"
 
-bool Renderer::loadFromRenderedText(SDL_Renderer* sRenderer, TTF_Font* font, const char* textureText, SDL_Color textColor)
+bool Renderer::loadFromRenderedText(SDL_Renderer *sRenderer, TTF_Font *font, const char *textureText, SDL_Color textColor)
 {
 	//Get rid of preexisting texture
 	this->Free();
 
 	//Render text surface
-	SDL_Surface* textSurface = TTF_RenderText_Solid(font, textureText, textColor);
+	SDL_Surface *textSurface = TTF_RenderText_Solid(font, textureText, textColor);
 	if (textSurface == NULL)
 	{
 		printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
@@ -77,10 +77,10 @@ void Renderer::Free()
 	}
 }
 
-void Renderer::render(SDL_Renderer* sRenderer, int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
+void Renderer::render(SDL_Renderer *sRenderer, int x, int y, SDL_Rect *clip, double angle, SDL_Point *center, SDL_RendererFlip flip)
 {
 	//Set rendering space and render to screen
-	SDL_Rect renderQuad = { x, y, this->mWidth, this->mHeight };
+	SDL_Rect renderQuad = {x, y, this->mWidth, this->mHeight};
 
 	//Set clip rendering dimensions
 	if (clip != NULL)

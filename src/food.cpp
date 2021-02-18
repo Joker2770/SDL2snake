@@ -31,17 +31,16 @@ SOFTWARE.
 
 #include "food.h"
 
-SDL_Rect* Food::drawSelf(void)
+SDL_Rect *Food::drawSelf(void)
 {
-	this->m_x_pos = (rand()%SCREEN_WIDTH)/ GRID_UNION_WIDTH * GRID_UNION_WIDTH;
-	this->m_y_pos = (rand()%SCREEN_HEIGHT)/ GRID_UNION_HEIGHT * GRID_UNION_HEIGHT;
+	this->m_x_pos = (rand() % SCREEN_WIDTH) / GRID_UNION_WIDTH * GRID_UNION_WIDTH;
+	this->m_y_pos = (rand() % SCREEN_HEIGHT) / GRID_UNION_HEIGHT * GRID_UNION_HEIGHT;
 
 	this->m_sRec[0] = {
 		this->m_x_pos,
 		this->m_y_pos,
 		GRID_UNION_WIDTH,
-		GRID_UNION_HEIGHT
-	};
+		GRID_UNION_HEIGHT};
 
 	return this->m_sRec;
 }

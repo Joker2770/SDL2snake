@@ -40,11 +40,11 @@ SOFTWARE.
 
 typedef enum driver_direction
 {
-	UP = 1,
-	DOWN = -1,
-	LEFT = -2,
-	RIGHT= 2
-}DRIVER_DIRECTION;
+    UP = 1,
+    DOWN = -1,
+    LEFT = -2,
+    RIGHT = 2
+} DRIVER_DIRECTION;
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -60,6 +60,6 @@ const long MIXDRAG = 250000;
 const int GRID_UNION_WIDTH = 10;
 const int GRID_UNION_HEIGHT = 10;
 
-const int LEN_LIMIT = SCREEN_HEIGHT * SCREEN_WIDTH / (GRID_UNION_HEIGHT*GRID_UNION_WIDTH);
+const int LEN_LIMIT = SCREEN_HEIGHT * SCREEN_WIDTH / (GRID_UNION_HEIGHT * GRID_UNION_WIDTH);
 
 #endif

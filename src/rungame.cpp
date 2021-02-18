@@ -43,7 +43,7 @@ extern "C"
 extern "C"
 {
 #endif
-	
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
@@ -70,16 +70,16 @@ bool loadMedia();
 void closeAll();
 
 //Single player
-void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food);
+void singlePlayer(Renderer *LRenderer, Snake *snake, Food *food);
 
 //Double player
-void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food);
+void doublePlayer(Renderer *LRenderer, Snake *snake1, Snake *snake2, Food *food);
 
 //The window we'll be rendering to
-SDL_Window* gWindow = NULL;
+SDL_Window *gWindow = NULL;
 
 //The window renderer
-SDL_Renderer* gRenderer = NULL;
+SDL_Renderer *gRenderer = NULL;
 
 //Globally used font
 TTF_Font *gFont = NULL;
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
 	Food *food = new Food();
 	Food *gfood = new Food();
 	Renderer *LRenderer = new Renderer();
-	
+
 	if (!init())
 	{
 		printf("Failed to initialize!\n");
@@ -162,11 +162,11 @@ int main(int argc, char *argv[])
 				}
 
 				//Render text
-				SDL_Color textColor = { 0, 0, 0, 0 };
+				SDL_Color textColor = {0, 0, 0, 0};
 				SDL_RenderClear(gRenderer);
 
-				SDL_Rect sRecUP = { 0, 0, BUTTON_WIDTH, BUTTON_HEIGHT };
-				SDL_Rect sRecDOWN = { 0, BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT };
+				SDL_Rect sRecUP = {0, 0, BUTTON_WIDTH, BUTTON_HEIGHT};
+				SDL_Rect sRecDOWN = {0, BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT};
 				SDL_SetRenderDrawColor(gRenderer, 193, 0xFF, 193, 0xFF);
 				SDL_RenderFillRect(gRenderer, &sRecUP);
 				SDL_SetRenderDrawColor(gRenderer, 255, 250, 205, 0xFF);
@@ -228,12 +228,12 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
+void singlePlayer(Renderer *LRenderer, Snake *snake, Food *food)
 {
 	snake->initSelf((SCREEN_WIDTH / 2) / GRID_UNION_WIDTH * GRID_UNION_WIDTH, (SCREEN_HEIGHT / 2) / GRID_UNION_HEIGHT * GRID_UNION_HEIGHT);
 	food->drawSelf();
 	//Render text
-	SDL_Color textColor = { 0, 0, 0, 0 };
+	SDL_Color textColor = {0, 0, 0, 0};
 	if (LRenderer->loadFromRenderedText(gRenderer, gFont, "Ready...", textColor))
 	{
 		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -397,7 +397,7 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 				SDL_RenderClear(gRenderer);
 
 				//Render text
-				SDL_Color textColor = { 0, 0, 0, 0 };
+				SDL_Color textColor = {0, 0, 0, 0};
 				char sText[128] = "\0";
 				snprintf(sText, sizeof(sText), "Game Over!You get %d.", iSnakeLength - 2);
 				//printf("%s\n", sText);
@@ -420,17 +420,17 @@ void singlePlayer(Renderer* LRenderer, Snake* snake, Food* food)
 	SDL_RenderClear(gRenderer);
 }
 
-void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
+void doublePlayer(Renderer *LRenderer, Snake *snake1, Snake *snake2, Food *food)
 {
 	snake1->initSelf((SCREEN_WIDTH / 2) / GRID_UNION_WIDTH * GRID_UNION_WIDTH, (SCREEN_HEIGHT / 4) / GRID_UNION_HEIGHT * GRID_UNION_HEIGHT);
 	snake2->initSelf((SCREEN_WIDTH / 2) / GRID_UNION_WIDTH * GRID_UNION_WIDTH, (SCREEN_HEIGHT * 3 / 4) / GRID_UNION_HEIGHT * GRID_UNION_HEIGHT);
 	food->drawSelf();
 	//Render text
-	SDL_Color textColor = { 0, 0, 0, 0 };
+	SDL_Color textColor = {0, 0, 0, 0};
 	SDL_RenderClear(gRenderer);
 
-	SDL_Rect sRecUP = { 0, 0, BUTTON_WIDTH, BUTTON_HEIGHT };
-	SDL_Rect sRecDOWN = { 0, BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT };
+	SDL_Rect sRecUP = {0, 0, BUTTON_WIDTH, BUTTON_HEIGHT};
+	SDL_Rect sRecDOWN = {0, BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT};
 	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderFillRect(gRenderer, &sRecUP);
 	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -449,9 +449,9 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 	//SDL_RenderClear(gRenderer);
 
 #ifdef _WIN32
-		Sleep(3000);
+	Sleep(3000);
 #else
-		usleep(3000000);
+	usleep(3000000);
 #endif
 
 	long iCount = 0;
@@ -673,7 +673,7 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 				iSnakeLength1 = 0;
 			if (!snake2->isAlive() || snake2BeCrash)
 				iSnakeLength2 = 0;
-				
+
 			SDL_Event e;
 			while (!quit)
 			{
@@ -705,16 +705,14 @@ void doublePlayer(Renderer* LRenderer, Snake* snake1, Snake* snake2, Food* food)
 				SDL_RenderClear(gRenderer);
 
 				//Render text
-				SDL_Color textColor = { 0, 0, 0, 0 };
+				SDL_Color textColor = {0, 0, 0, 0};
 				char sText[128] = "\0";
 				snprintf(sText, sizeof(sText), "Game Over! Snake1 get %d, Snake2 get %d. ", iSnakeLength1 - 2, iSnakeLength2 - 2);
 				//printf("%s\n", sText);
 				if (iSnakeLength1 != iSnakeLength2)
 				{
 					//Render background
-					iSnakeLength1 > iSnakeLength2 ?
-						SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF) :
-						SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0x00, 0xFF);
+					iSnakeLength1 > iSnakeLength2 ? SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF) : SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0x00, 0xFF);
 					SDL_RenderClear(gRenderer);
 				}
 				if (LRenderer->loadFromRenderedText(gRenderer, gFont, sText, textColor))
@@ -770,7 +768,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("SDL2snake v20.20.12-stable", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("SDL2snake v20.21-02-stable", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -797,7 +795,6 @@ bool init()
 					success = false;
 				}
 			}
-
 		}
 	}
 

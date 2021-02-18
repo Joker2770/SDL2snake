@@ -45,8 +45,8 @@ extern "C"
 extern "C"
 {
 #endif
-	
-#include<SDL2/SDL.h>
+
+#include <SDL2/SDL.h>
 
 //Linux C++
 #ifdef __cplusplus
@@ -54,39 +54,37 @@ extern "C"
 #endif
 #endif
 
-#include<stdlib.h>
-#include"config.h"
+#include <stdlib.h>
+#include "config.h"
 
 class Food
 {
-	public:
-		Food():m_x_pos((rand()%SCREEN_WIDTH)/ GRID_UNION_WIDTH * GRID_UNION_WIDTH), m_y_pos((rand()%SCREEN_HEIGHT)/ GRID_UNION_HEIGHT * GRID_UNION_HEIGHT)
-		{
-			this->m_sRec[0] = {};
-			this->m_sRec[0] = {
-				this->m_x_pos,
-				this->m_y_pos,
-				GRID_UNION_WIDTH,
-				GRID_UNION_HEIGHT
-			};
-			this->beEaten = false;
-		}
-		~Food()
-		{
-			this->m_sRec[0] = {};
-			this->m_x_pos = 0;
-			this->m_y_pos = 0;
-		}
+public:
+	Food() : m_x_pos((rand() % SCREEN_WIDTH) / GRID_UNION_WIDTH * GRID_UNION_WIDTH), m_y_pos((rand() % SCREEN_HEIGHT) / GRID_UNION_HEIGHT * GRID_UNION_HEIGHT)
+	{
+		this->m_sRec[0] = {};
+		this->m_sRec[0] = {
+			this->m_x_pos,
+			this->m_y_pos,
+			GRID_UNION_WIDTH,
+			GRID_UNION_HEIGHT};
+		this->beEaten = false;
+	}
+	~Food()
+	{
+		this->m_sRec[0] = {};
+		this->m_x_pos = 0;
+		this->m_y_pos = 0;
+	}
 
-	public:
-		SDL_Rect* drawSelf(void);
+public:
+	SDL_Rect *drawSelf(void);
 
-	public:
-		int m_x_pos;
-		int m_y_pos;
-		SDL_Rect m_sRec[1];
-		bool beEaten;
+public:
+	int m_x_pos;
+	int m_y_pos;
+	SDL_Rect m_sRec[1];
+	bool beEaten;
 };
 
 #endif
-

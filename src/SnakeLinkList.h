@@ -5,7 +5,7 @@
     > Created Time: Sat Sep 19 14:39:21 2020
  ************************************************************************/
 
- /*
+/*
  MIT License
 
  Copyright (c) 2020 Joker2770
@@ -36,10 +36,10 @@
 
 typedef struct snake_node
 {
-	int x_pos;
-	int y_pos;
-	struct snake_node* next;
-}SnakeNode, *SnakeList;
+    int x_pos;
+    int y_pos;
+    struct snake_node *next;
+} SnakeNode, *SnakeList;
 
 int countSnakeLength(SnakeList L);
 void printList(SnakeList L);
@@ -52,4 +52,3 @@ SnakeList foundNode(SnakeList L, int idx);
 SnakeList deleteNode(SnakeList L, int idx);
 
 #endif
-
