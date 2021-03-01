@@ -1,8 +1,8 @@
 
   # After registering a name on build.snapcraft.io, commit an uncommented line:
   name: sdl2snake
-  version: '20.21.02' # just for humans, typically '1.2+git' or '1.3.2'
-  summary: a simple snake game writen with C++, and render by SDL2. # 79 char long summary
+  version: '20.21.03' # just for humans, typically '1.2+git' or '1.3.2'
+  summary: a simple snake game is written with C++, and is rendered by SDL2. # 79 char long summary
   description: |
     **available key control for pure keyboard:**
     * Esc - Quit current scenes.
