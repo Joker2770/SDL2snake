@@ -78,11 +78,12 @@ bool Snake::isAlive(void)
 void Snake::haltSelf(void)
 {
 	printf("drag: %d\n", this->m_drag);
-#ifdef _WIN32
-	Sleep((int)((this->m_drag) / 1000));
-#else
-	usleep(this->m_drag);
-#endif
+// #ifdef _WIN32
+// 	Sleep((int)((this->m_drag) / 1000));
+// #else
+// 	usleep(this->m_drag);
+// #endif
+	SDL_Delay((this->m_drag) / 1000);
 }
 
 void Snake::moveSelf(void)

@@ -34,7 +34,7 @@ SOFTWARE.
 
 #ifdef _MSC_VER
 //Windows
-#include <windows.h>
+//#include <windows.h>
 extern "C"
 {
 #include "SDL.h"
@@ -42,7 +42,7 @@ extern "C"
 #else
 //Linux
 //Linux C++
-#include <unistd.h>
+//#include <unistd.h>
 #ifdef __cplusplus
 extern "C"
 {

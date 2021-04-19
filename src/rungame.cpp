@@ -244,11 +244,12 @@ void singlePlayer(Renderer *LRenderer, Snake *snake, Food *food)
 		SDL_RenderPresent(gRenderer);
 		//SDL_RenderClear(gRenderer);
 
-#ifdef _WIN32
-		Sleep(3000);
-#else
-		usleep(3000000);
-#endif
+// #ifdef _WIN32
+// 		Sleep(3000);
+// #else
+// 		usleep(3000000);
+// #endif
+		SDL_Delay(3000);
 	}
 
 	//Main loop flag
@@ -448,11 +449,12 @@ void doublePlayer(Renderer *LRenderer, Snake *snake1, Snake *snake2, Food *food)
 	SDL_RenderPresent(gRenderer);
 	//SDL_RenderClear(gRenderer);
 
-#ifdef _WIN32
-	Sleep(3000);
-#else
-	usleep(3000000);
-#endif
+// #ifdef _WIN32
+// 	Sleep(3000);
+// #else
+// 	usleep(3000000);
+// #endif
+	SDL_Delay(3000);
 
 	long iCount = 0;
 
@@ -738,11 +740,12 @@ void doublePlayer(Renderer *LRenderer, Snake *snake1, Snake *snake2, Food *food)
 
 		printf("iCount: %ld\n", iCount);
 
-#ifdef _WIN32
-		Sleep(MIXDRAG / 1000);
-#else
-		usleep(MIXDRAG);
-#endif
+// #ifdef _WIN32
+// 		Sleep(MIXDRAG / 1000);
+// #else
+// 		usleep(MIXDRAG);
+// #endif
+		SDL_Delay(MIXDRAG / 1000);
 	}
 	SDL_RenderClear(gRenderer);
 }
@@ -768,7 +771,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("SDL2snake v20.21-02-stable", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("SDL2snake v20.21-04-stable", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
