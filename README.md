@@ -1,4 +1,7 @@
 # SDL2snake
+
+[![sdl2snake](https://snapcraft.io/sdl2snake/badge.svg)](https://snapcraft.io/sdl2snake)
+
 A game of snake made with SDL2. 
 
 ## Dependencies
