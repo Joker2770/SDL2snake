@@ -29,6 +29,7 @@
         - desktop-legacy
         - wayland
         - unity7
+        - x11
         # - opengl
         
   layout:

@@ -6,5 +6,5 @@ Comment=a simple snake game is written with C++, and is rendered by SDL2.
 Exec=sdl2snake
 Terminal=false
 Type=Application
-Categories=Graphics;Games;Entertainment;
+Categories=Game;BoardGame;
 Icon=${SNAP}/meta/gui/icon.png
