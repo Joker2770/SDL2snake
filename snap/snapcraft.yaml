@@ -12,7 +12,7 @@
     * W, S, A, D - For double player mode, for player1 control.
     * up, down, left, right - For single player mode or player2 of double player mode.
 
-    _More detail please view code: < https://github.com/Joker2770/SDL2snake >. _
+    _More detail please view code: < https://github.com/Joker2770/SDL2snake >._
 
   # icon: snap/gui/icon.png
 
