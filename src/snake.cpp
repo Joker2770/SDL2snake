@@ -31,6 +31,8 @@ SOFTWARE.
 
 #include "snake.h"
 
+#include <string.h>
+
 void Snake::initSelf(int ix, int iy)
 {
 	this->m_snake = NULL;
