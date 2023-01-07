@@ -1,5 +1,6 @@
 # SDL2snake
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ac6a0bb578ff4bf3b6de9f9013ec8b1d)](https://app.codacy.com/gh/Joker2770/SDL2snake?utm_source=github.com&utm_medium=referral&utm_content=Joker2770/SDL2snake&utm_campaign=Badge_Grade_Settings)
 [![sdl2snake](https://snapcraft.io/sdl2snake/badge.svg)](https://snapcraft.io/sdl2snake)
 
 A game of snake made with SDL2. 
