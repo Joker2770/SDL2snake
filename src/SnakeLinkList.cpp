@@ -8,7 +8,7 @@
 /*
  MIT License
 
- Copyright (c) 2020 Joker2770
+ Copyright (c) 2020-2023 Joker2770
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -115,12 +115,14 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 		{
 			pe->next = p;
 		}
+		pHead = p;
 	}
 	else
 	{
 		q = foundNode(pHead, idx - 1);
 		p->next = q->next;
 		q->next = p;
+		pHead = p;
 	}
 	return pHead;
 }
