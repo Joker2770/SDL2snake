@@ -1,5 +1,5 @@
 [Desktop Entry]
-Version=20.21.04
+Version=20.23.01
 Encoding=UTF-8
 Name=sdl2snake
 Comment=a simple snake game is written with C++, and is rendered by SDL2.

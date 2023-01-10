@@ -115,14 +115,12 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 		{
 			pe->next = p;
 		}
-		pHead = p;
 	}
 	else
 	{
 		q = foundNode(pHead, idx - 1);
 		p->next = q->next;
 		q->next = p;
-		pHead = p;
 	}
 	return pHead;
 }

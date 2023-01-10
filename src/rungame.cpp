@@ -8,7 +8,7 @@
 /*
 MIT License
 
-Copyright (c) 2020 Joker2770
+Copyright (c) 2020-2023 Joker2770
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -351,9 +351,17 @@ void singlePlayer(Renderer *LRenderer, Snake *snake, Food *food)
 		{
 			//Render green filled quad
 			SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF);
-			if (0 == i)
-				SDL_SetRenderDrawColor(gRenderer, 0xB2, 0x22, 0x22, 0xFF);
 			SDL_RenderFillRect(gRenderer, &(snake->m_sRec[i]));
+			if (0 == i)
+			{
+				SDL_SetRenderDrawColor(gRenderer, 0xB2, 0x22, 0x22, 0xFF);
+				SDL_FRect Re;
+				Re.x = snake->m_sRec[i].x + snake->m_sRec[i].w / 4;
+				Re.y = snake->m_sRec[i].y + snake->m_sRec[i].h / 4;
+				Re.w = snake->m_sRec[i].w / 2;
+				Re.h = snake->m_sRec[i].h / 2;
+				SDL_RenderFillRectF(gRenderer, &Re);
+			}
 			//Render blue outlined quad
 			SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0xFF, 0xFF);
 			SDL_RenderDrawRect(gRenderer, &(snake->m_sRec[i]));
@@ -603,9 +611,17 @@ void doublePlayer(Renderer *LRenderer, Snake *snake1, Snake *snake2, Food *food)
 		{
 			//Render green filled quad
 			SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF);
-			if (0 == i)
-				SDL_SetRenderDrawColor(gRenderer, 0xB2, 0x22, 0x22, 0xFF);
 			SDL_RenderFillRect(gRenderer, &(snake1->m_sRec[i]));
+			if (0 == i)
+			{
+				SDL_SetRenderDrawColor(gRenderer, 0xB2, 0x22, 0x22, 0xFF);
+				SDL_FRect Re;
+				Re.x = snake1->m_sRec[i].x + snake1->m_sRec[i].w / 4;
+				Re.y = snake1->m_sRec[i].y + snake1->m_sRec[i].h / 4;
+				Re.w = snake1->m_sRec[i].w / 2;
+				Re.h = snake1->m_sRec[i].h / 2;
+				SDL_RenderFillRectF(gRenderer, &Re);
+			}
 			//Render blue outlined quad
 			SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0xFF, 0xFF);
 			SDL_RenderDrawRect(gRenderer, &(snake1->m_sRec[i]));
@@ -619,11 +635,19 @@ void doublePlayer(Renderer *LRenderer, Snake *snake1, Snake *snake2, Food *food)
 		int iSnakeLength2 = snake2->getLength();
 		for (int i = 0; i < iSnakeLength2; i++)
 		{
-			//Render green filled quad
+			//Render yellow filled quad
 			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0x00, 0xFF);
-			if (0 == i)
-				SDL_SetRenderDrawColor(gRenderer, 0xB2, 0x22, 0x22, 0xFF);
 			SDL_RenderFillRect(gRenderer, &(snake2->m_sRec[i]));
+			if (0 == i)
+			{
+				SDL_SetRenderDrawColor(gRenderer, 0xB2, 0x22, 0x22, 0xFF);
+				SDL_FRect Re;
+				Re.x = snake2->m_sRec[i].x + snake2->m_sRec[i].w / 4;
+				Re.y = snake2->m_sRec[i].y + snake2->m_sRec[i].h / 4;
+				Re.w = snake2->m_sRec[i].w / 2;
+				Re.h = snake2->m_sRec[i].h / 2;
+				SDL_RenderFillRectF(gRenderer, &Re);
+			}
 			//Render blue outlined quad
 			SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0xFF, 0xFF);
 			SDL_RenderDrawRect(gRenderer, &(snake2->m_sRec[i]));
@@ -771,7 +795,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("SDL2snake v20.21-04-stable", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("SDL2snake v20.23.01-stable", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -818,11 +842,12 @@ bool loadMedia()
 		if (NULL == gFont)
 		{
 			printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
-			//For snap
-			gFont = TTF_OpenFont("/snap/sdl2snake/current/usr/local/bin/lazy.ttf", 28);
+			gFont = TTF_OpenFont("$HOME/.SDL2snake/lazy.ttf", 28);
 			if (NULL == gFont)
 			{
 				printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
+				// For snap
+				gFont = TTF_OpenFont("/snap/sdl2snake/current/usr/local/bin/lazy.ttf", 28);
 				success = false;
 			}
 		}
