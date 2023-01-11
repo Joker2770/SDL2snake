@@ -34,6 +34,7 @@ SOFTWARE.
 extern "C"
 {
 #include "SDL.h"
+#include "SDL_rect.h"
 #include "SDL_ttf.h"
 };
 #else
@@ -45,6 +46,7 @@ extern "C"
 #endif
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_ttf.h>
 
 //Linux C++
