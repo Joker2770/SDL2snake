@@ -8,7 +8,7 @@
 /*
  MIT License
 
- Copyright (c) 2020 Joker2770
+ Copyright (c) 2020-2023 Joker2770
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -44,11 +44,11 @@ typedef struct snake_node
 int countSnakeLength(SnakeList L);
 void printList(SnakeList L);
 void cleanSnakeNode(SnakeList L);
-//idx is the position which will be insert, start with 1
+//idx is the position which will be insert, start with 0
 SnakeList insertNode(SnakeList L, int idx, int x_pos, int y_pos);
-//idx start with 1
+//idx start with 0
 SnakeList foundNode(SnakeList L, int idx);
-//idx start with 1
+//idx start with 0
 SnakeList deleteNode(SnakeList L, int idx);
 
 #endif

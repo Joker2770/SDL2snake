@@ -55,7 +55,7 @@ void printList(SnakeList pHead)
 	printf("PosList: ");
 	for (int i = 0; i < iCount; i++)
 	{
-		pF = foundNode(pHead, i + 1);
+		pF = foundNode(pHead, i);
 		printf("(%d, %d) ", pF->x_pos, pF->y_pos);
 	}
 	printf("\n");
@@ -63,11 +63,11 @@ void printList(SnakeList pHead)
 
 SnakeList foundNode(SnakeList pHead, int idx)
 {
-	if (NULL == pHead || idx <= 0)
+	if (NULL == pHead || idx < 0)
 		return NULL;
 
 	SnakeList pFound = pHead;
-	for (int i = 1; NULL != pFound; i++)
+	for (int i = 0; NULL != pFound; i++)
 	{
 		if (idx == i)
 		{
@@ -100,17 +100,17 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 
 	int iCount = countSnakeLength(pHead);
 	//to the first
-	if (1 >= idx)
+	if (0 >= idx)
 	{
 		printf("to the first\n");
 		p->next = q;
 		pHead = p;
 	}
 	//to the end
-	else if (iCount < idx)
+	else if (idx >= iCount)
 	{
 		printf("to the end\n");
-		pe = foundNode(pHead, iCount);
+		pe = foundNode(pHead, iCount - 1);
 		if (NULL != pe)
 		{
 			pe->next = p;
@@ -118,7 +118,7 @@ SnakeList insertNode(SnakeList pHead, int idx, int x, int y)
 	}
 	else
 	{
-		q = foundNode(pHead, idx - 1);
+		q = foundNode(pHead, idx);
 		p->next = q->next;
 		q->next = p;
 	}
@@ -134,19 +134,19 @@ SnakeList deleteNode(SnakeList pHead, int idx)
 		return pHead;
 
 	int icount = countSnakeLength(pHead);
-	if (idx < 1 || idx > icount)
+	if (idx < 0 || idx >= icount)
 		return pHead;
 
 	printf("idx = %d\n", idx);
-	if (1 == idx)
+	if (0 == idx)
 	{
 		pHead = pHead->next;
 		free(p);
 		p = NULL;
 	}
-	else if (idx == icount)
+	else if (idx == icount - 1)
 	{
-		p = foundNode(pHead, icount - 1);
+		p = foundNode(pHead, idx - 1);
 		tmp = p->next;
 		free(tmp);
 		tmp = NULL;
@@ -156,7 +156,7 @@ SnakeList deleteNode(SnakeList pHead, int idx)
 	{
 		p = foundNode(pHead, idx - 1);
 		tmp = p->next;
-		p->next = tmp->next;
+		p->next = p->next->next;
 		free(tmp);
 		tmp = NULL;
 	}

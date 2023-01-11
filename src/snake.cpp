@@ -8,7 +8,7 @@
 /*
 MIT License
 
-Copyright (c) 2020 Joker2770
+Copyright (c) 2020-2023 Joker2770
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,8 +36,8 @@ SOFTWARE.
 void Snake::initSelf(int ix, int iy)
 {
 	this->m_snake = NULL;
-	this->m_snake = insertNode(this->m_snake, 1, ix, iy);
-	this->m_snake = insertNode(this->m_snake, 2, ix + GRID_UNION_WIDTH, iy);
+	this->m_snake = insertNode(this->m_snake, 0, ix, iy);
+	this->m_snake = insertNode(this->m_snake, 1, ix + GRID_UNION_WIDTH, iy);
 
 	this->m_iLength = countSnakeLength(this->m_snake);
 	this->isEating = false;
@@ -100,19 +100,19 @@ void Snake::moveSelf(void)
 	{
 	case UP:
 		tmp = this->m_snake->y_pos - GRID_UNION_HEIGHT;
-		this->m_snake = insertNode(this->m_snake, 1, this->m_snake->x_pos, tmp);
+		this->m_snake = insertNode(this->m_snake, 0, this->m_snake->x_pos, tmp);
 		break;
 	case DOWN:
 		tmp = this->m_snake->y_pos + GRID_UNION_HEIGHT;
-		this->m_snake = insertNode(this->m_snake, 1, this->m_snake->x_pos, tmp);
+		this->m_snake = insertNode(this->m_snake, 0, this->m_snake->x_pos, tmp);
 		break;
 	case LEFT:
 		tmp = this->m_snake->x_pos - GRID_UNION_WIDTH;
-		this->m_snake = insertNode(this->m_snake, 1, tmp, this->m_snake->y_pos);
+		this->m_snake = insertNode(this->m_snake, 0, tmp, this->m_snake->y_pos);
 		break;
 	case RIGHT:
 		tmp = this->m_snake->x_pos + GRID_UNION_WIDTH;
-		this->m_snake = insertNode(this->m_snake, 1, tmp, this->m_snake->y_pos);
+		this->m_snake = insertNode(this->m_snake, 0, tmp, this->m_snake->y_pos);
 		break;
 	default:
 		break;
@@ -121,7 +121,7 @@ void Snake::moveSelf(void)
 	this->m_iLength = countSnakeLength(this->m_snake);
 
 	if (!this->isEating)
-		this->m_snake = deleteNode(this->m_snake, this->m_iLength);
+		this->m_snake = deleteNode(this->m_snake, this->m_iLength - 1);
 	else
 	{
 		printf("Snake is eating ... \n");
