@@ -45,10 +45,10 @@ int countSnakeLength(SnakeList L);
 void printList(SnakeList L);
 void cleanSnakeNode(SnakeList L);
 //idx is the position which will be insert, start with 0
-SnakeList insertNode(SnakeList L, int idx, int x_pos, int y_pos);
+SnakeList insertNode(SnakeList L, unsigned int idx, int x_pos, int y_pos);
 //idx start with 0
-SnakeList foundNode(SnakeList L, int idx);
+SnakeList foundNode(SnakeList L, unsigned int idx);
 //idx start with 0
-SnakeList deleteNode(SnakeList L, int idx);
+SnakeList deleteNode(SnakeList L, unsigned int idx);
 
 #endif

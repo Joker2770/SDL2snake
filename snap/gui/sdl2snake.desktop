@@ -2,7 +2,7 @@
 Version=20.23.01
 Encoding=UTF-8
 Name=sdl2snake
-Comment=a simple snake game is written with C++, and is rendered by SDL2.
+Comment=a simple snake game written with C++, and rendered by SDL2.
 Exec=sdl2snake
 Terminal=false
 Type=Application
